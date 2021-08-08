@@ -18,3 +18,14 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app/index.js', 'public/js/')
     .react();
+
+mix.postCss("resources/css/tailwind.css", "public/css", [
+    require("tailwindcss"),
+]);
+
+mix.postCss('resources/css/bootstrap-icons.css', 'public/css/')
+    .postCss('resources/css/fonts/poppins.css', 'public/css/fonts')
+
+if (mix.inProduction()) {
+    mix.version();
+}

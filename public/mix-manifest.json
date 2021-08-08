@@ -1,3 +1,6 @@
 {
-    "/js/index.js": "/js/index.js"
+    "/js/index.js": "/js/index.js",
+    "/css/fonts/poppins.css": "/css/fonts/poppins.css",
+    "/css/bootstrap-icons.css": "/css/bootstrap-icons.css",
+    "/css/tailwind.css": "/css/tailwind.css"
 }

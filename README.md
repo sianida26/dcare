@@ -22,4 +22,9 @@ npm install
 ```bash
 php artisan migrate
 ```
+
+5. Install Laravel Passport
+```bash
+php artisan passport:install --uuids
+```
 Selesai

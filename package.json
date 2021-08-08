@@ -11,14 +11,23 @@
     },
     "devDependencies": {
         "@babel/preset-react": "^7.14.5",
+        "autoprefixer": "^10.3.1",
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
+        "postcss": "^8.3.6",
+        "tailwindcss": "^2.2.6"
     },
     "dependencies": {
+        "@types/faker": "^5.5.7",
+        "dexie": "^3.0.3",
+        "faker": "^5.5.3",
+        "notistack": "^1.0.9",
         "react": "^17.0.2",
+        "react-animated-css": "^1.2.1",
+        "react-calendar": "^3.4.0",
         "react-dom": "^17.0.2",
+        "react-perfect-scrollbar": "^1.5.8",
         "react-router-dom": "^5.2.0"
     }
 }
