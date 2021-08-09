@@ -61,6 +61,7 @@ export default function Login() {
         .then(response => {
             console.log(response)
             setRegisterErrors({})
+            history.replace('/dashboard')
         })
         .catch(err => {
             console.log(err.response)
@@ -92,7 +93,7 @@ export default function Login() {
             db.auth.put({key: 'name', value: data.name})
             db.auth.put({key: 'username', value: data.username})
             db.auth.put({key: 'role', value: data.role})
-            history.replace('/')
+            history.replace('/dashboard')
         })
         .catch(err => {
             console.log(err)

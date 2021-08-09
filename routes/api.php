@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TerapisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,13 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::post('/register',[AuthController::class, 'register']);
+Route::post('/register-terapis', [AuthController::class, 'registerTerapis']);
 Route::post('/login',[AuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function(){
     Route::get('/logout', [AuthController::class, 'logout']);
+    
+    Route::prefix('/konsultasi')->group(function(){
+        Route::post('/getTerapists', [TerapisController::class, 'getTerapists']);
+    });
 });

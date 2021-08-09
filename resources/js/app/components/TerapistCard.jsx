@@ -5,7 +5,7 @@ import logo from '../assets/logo/logo-white.png'
 export default function TerapistCard({avatar, name, email, phone, rating, job, year, speciality}) {
     return (
         <div className="tw-max-w-sm tw-w-full tw-flex tw-flex-col tw-px-8 tw-py-8 tw-items-center tw-text-sm tw-bg-white" style={{boxShadow: '0px 0px 42px rgba(0, 0, 0, 0.25)', borderRadius: '3rem'}}>
-            <div className="tw-w-full tw-px-6 tw-flex tw-flex-col tw-items-center">
+            <div className="tw-w-full tw-px-1 lg:tw-px-6 tw-flex tw-flex-col tw-items-center">
                 {/* card header */}
                 <div className="tw-rounded-xl tw-bg-primary tw-grid tw-place-items-center tw-py-4 tw-w-full">
                     <img src={logo} alt="Logo" className="tw-h-8" />

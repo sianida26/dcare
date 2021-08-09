@@ -29,3 +29,5 @@ mix.postCss('resources/css/bootstrap-icons.css', 'public/css/')
 if (mix.inProduction()) {
     mix.version();
 }
+
+mix.browserSync('localhost:8001')

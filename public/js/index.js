@@ -2667,6 +2667,7 @@ function Login() {
     }).then(function (response) {
       console.log(response);
       setRegisterErrors({});
+      history.replace('/dashboard');
     })["catch"](function (err) {
       var _err$response;
 
@@ -2712,7 +2713,7 @@ function Login() {
         key: 'role',
         value: data.role
       });
-      history.replace('/');
+      history.replace('/dashboard');
     })["catch"](function (err) {
       var _err$response2;
 
@@ -2886,12 +2887,202 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ RegisterTerapist)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_HeaderLanding__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/HeaderLanding */ "./resources/js/app/components/HeaderLanding.jsx");
+/* harmony import */ var _providers_AuthProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../providers/AuthProvider */ "./resources/js/app/providers/AuthProvider.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+
+
+
+
+var FORMS = [{
+  label: 'Nama Lengkap',
+  name: 'fullname'
+}, {
+  label: 'Tempat/Tanggal Lahir',
+  name: 'birthdate'
+}, {
+  label: 'No. Telepon',
+  name: 'phone'
+}, {
+  label: 'E-mail',
+  name: 'email',
+  type: 'email'
+}, {
+  label: 'Password',
+  name: 'password',
+  type: 'password',
+  autocomplete: 'new-password'
+}, {
+  label: 'Alamat Lengkap',
+  name: 'address'
+}, {
+  label: 'Pendidikan Terakhir',
+  name: 'education'
+}, {
+  label: 'Menjadi terapis sejak',
+  name: 'terapist_since',
+  type: 'number'
+}, {
+  label: 'Kode Referral',
+  name: 'referral'
+}];
+var DEFAULT_FORM = {
+  fullname: '',
+  birthdate: '',
+  phone: '',
+  email: '',
+  password: '',
+  address: '',
+  education: '',
+  terapist_since: '',
+  referral: ''
+};
 function RegisterTerapist() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    children: "Ini daftar terapis"
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(DEFAULT_FORM),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      formData = _React$useState2[0],
+      setFormData = _React$useState2[1];
+
+  var _useAuth = (0,_providers_AuthProvider__WEBPACK_IMPORTED_MODULE_2__.useAuth)(),
+      axios = _useAuth.axios;
+
+  var handleFormChange = function handleFormChange(name, value) {
+    setFormData(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, value));
+    });
+  };
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    axios({
+      method: 'post',
+      url: '/register-terapis',
+      data: formData
+    }).then(function (result) {
+      //handle success response
+      var data = result.data;
+      console.log(data); //todo remove log
+    })["catch"](function (error) {
+      //handle error response
+      var errorMessage = error.pesan ? error.pesan : "Terjadi kesalahan pada pengaturan request ini. Silakan hubungi Admin.";
+
+      if (error.request) {//Request was made but no response was received
+      } else if (error.response) {
+        //Error caused from the server
+        console.log(error.response); //todo remove log
+
+        var errorCode = error.response.status;
+
+        switch (errorCode) {
+          case 400:
+            /*bad request*/
+            break;
+
+          case 401:
+            /*Unauthorized*/
+            break;
+
+          case 403:
+            /*Forbidden*/
+            break;
+
+          case 404:
+            /*not found*/
+            break;
+
+          case 405:
+            /*method not allowed*/
+            break;
+
+          case 408:
+            /*Request timed out*/
+            break;
+
+          case 409:
+            /*Conflict*/
+            break;
+
+          case 419:
+            /*Page expired, CSRF token missing*/
+            break;
+
+          case 422:
+            /*Validation failed*/
+            break;
+
+          case 429:
+            /*Too Many Request */
+            break;
+
+          case Math.floor(errorCode / 100) === 5:
+            //server error
+            errorMessage = "Ups. Terjadi error di dalam server. silakan coba lagi nanti (".concat(errorCode, ")");
+            break;
+
+          default:
+            /* Other errors */
+            errorMessage = "Ups. terjadi error (".concat(errorCode, ")");
+        }
+      } else {//Something happened in setting up the request that triggered an Error
+      } //you can show error notification here
+      // if (errorMessage) enqueueSnackbar(errorMessage,{variant:"error"});
+
+    });
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "tw-relative tw-flex tw-flex-col tw-w-full",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_HeaderLanding__WEBPACK_IMPORTED_MODULE_1__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "tw-flex tw-relative tw-flex-col tw-px-8 tw-mt-24 tw-w-full tw-pb-8",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
+        className: "tw-text-4xl tw-text-primary tw-font-bold",
+        children: "Registrasi Terapis"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+        className: "tw-flex tw-flex-col tw-gap-2 tw-mt-4",
+        onSubmit: handleSubmit,
+        children: [FORMS.map(function (form, i) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              className: "tw-font-semibold",
+              children: form.label
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              autoComplete: form.autocomplete,
+              className: "tw-py-1 tw-px-2 tw-rounded-md tw-border tw-border-gray-500 tw-w-1/2",
+              onChange: function onChange(e) {
+                return handleFormChange(form.name, e.target.value);
+              },
+              type: form.type || 'text',
+              value: formData[form.name]
+            })]
+          }, i);
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "tw-grid tw-place-items-center tw-mt-4",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+            className: "tw-py-3 tw-px-4 tw-bg-primary tw-font-semibold tw-text-white tw-shadow-md tw-rounded-md",
+            children: "Submit"
+          })
+        })]
+      })]
+    })]
   });
 }
 
