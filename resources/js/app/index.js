@@ -5,6 +5,7 @@ import App from './App'
 import AuthProvider, {useAuth} from './providers/AuthProvider'
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import 'react-calendar/dist/Calendar.css';
 
 ReactDOM.render(
     <React.StrictMode>
