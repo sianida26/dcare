@@ -1,7 +1,7 @@
 import Logout from "../pages/Logout";
 import LandingPage from "../pages/public/LandingPage";
 import Dashboard from '../pages/terapis/DashboardTerapis';
-
+import Jadwal from '../pages/terapis/Jadwal';
 
 const routes = [
     {
@@ -17,9 +17,9 @@ const routes = [
         component: Logout,
     },
     {
-        path: '/terapis/daftar',
-        component: RegisterTerapist,
-    },
+        path: '/jadwal',
+        component: Jadwal,
+    }
 ]
 
 export default routes;

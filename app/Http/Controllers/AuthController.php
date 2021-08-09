@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Terapis;
+use App\Models\TerapistSpeciality;
+
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use Spatie\Permission\Models\Role;
-use App\Models\User;
-use App\Models\Terapis;
 
 class AuthController extends Controller
 {
@@ -70,6 +72,7 @@ class AuthController extends Controller
 
         $user = new User;
         $terapis = new Terapis;
+        $speciality = TerapistSpeciality::all()->random();
 
         $user->name = $request->fullname;
         $user->email = $request->email;
@@ -79,6 +82,7 @@ class AuthController extends Controller
         $terapis->address = $request->address;
         $terapis->education = $request->education;
         $terapis->terapist_since = $request->terapist_since;
+        $terapis->speciality()->associate($speciality);
 
         $user->save();
         $user->terapist()->save($terapis);

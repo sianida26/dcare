@@ -135,6 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ DashboardTerapist)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_HeaderLanding__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/HeaderLanding */ "./resources/js/app/components/HeaderLanding.jsx");
 /* harmony import */ var _assets_images_qna_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../assets/images/qna.png */ "./resources/js/app/assets/images/qna.png");
 /* harmony import */ var _assets_images_event_terdekat_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../assets/images/event_terdekat.png */ "./resources/js/app/assets/images/event_terdekat.png");
@@ -145,9 +146,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var DASHBOARD_MENUS = [{
   icon: 'calendar-check',
-  caption: 'Agenda Konsultasi'
+  caption: 'Agenda Konsultasi',
+  link: '/jadwal'
 }, {
   icon: 'envelope-open',
   //todo ganti
@@ -161,6 +164,7 @@ var DASHBOARD_MENUS = [{
 
 }];
 function DashboardTerapist() {
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useHistory)();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "tw-w-full tw-flex tw-flex-col tw-relative",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_HeaderLanding__WEBPACK_IMPORTED_MODULE_1__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("main", {
@@ -170,10 +174,13 @@ function DashboardTerapist() {
         children: "Beranda Terapis"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "tw-w-full tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-5 tw-gap-5 tw-mt-8 tw-self-stretch tw-place-items-center",
-        children: DASHBOARD_MENUS.map(function (x) {
+        children: DASHBOARD_MENUS.map(function (x, i) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
             className: "tw-flex tw-flex-col tw-gap-2 tw-items-center tw-text-center tw-border-red-400 tw-h-36",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              onClick: function onClick() {
+                return history.push(x.link);
+              },
               className: "tw-flex tw-items-center tw-justify-center tw-w-20 tw-h-20 tw-rounded-full",
               style: {
                 boxShadow: '0px 0px 12px 2px rgba(0, 0, 0, 0.25)'
@@ -185,7 +192,7 @@ function DashboardTerapist() {
               className: "tw-font-semibold",
               children: x.caption
             })]
-          });
+          }, i);
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
         src: _assets_images_qna_png__WEBPACK_IMPORTED_MODULE_2__.default,
@@ -199,6 +206,29 @@ function DashboardTerapist() {
       src: _assets_images_event_terdekat_png__WEBPACK_IMPORTED_MODULE_3__.default,
       className: "tw-absolute tw-bottom-0 tw-h-48 tw-object-contain tw-right-0"
     })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/app/pages/terapis/Jadwal.jsx":
+/*!***************************************************!*\
+  !*** ./resources/js/app/pages/terapis/Jadwal.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Jadwal)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function Jadwal() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    children: "aku jadwal"
   });
 }
 
@@ -218,6 +248,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Logout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pages/Logout */ "./resources/js/app/pages/Logout.jsx");
 /* harmony import */ var _pages_public_LandingPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/public/LandingPage */ "./resources/js/app/pages/public/LandingPage.jsx");
 /* harmony import */ var _pages_terapis_DashboardTerapis__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/terapis/DashboardTerapis */ "./resources/js/app/pages/terapis/DashboardTerapis.jsx");
+/* harmony import */ var _pages_terapis_Jadwal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/terapis/Jadwal */ "./resources/js/app/pages/terapis/Jadwal.jsx");
+
 
 
 
@@ -231,8 +263,8 @@ var routes = [{
   path: '/logout',
   component: _pages_Logout__WEBPACK_IMPORTED_MODULE_0__.default
 }, {
-  path: '/terapis/daftar',
-  component: RegisterTerapist
+  path: '/jadwal',
+  component: _pages_terapis_Jadwal__WEBPACK_IMPORTED_MODULE_3__.default
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
 

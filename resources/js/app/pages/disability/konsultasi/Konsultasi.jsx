@@ -50,8 +50,19 @@ export default function Konsultasi() {
             url: '/konsultasi/getTerapists',
         })
         .then(result => { //handle success response
+            faker.locale = 'id_ID'
+
             let data = result.data;
-            console.log(data) //todo remove log
+            setTerapists(data.map((terapist) => ({
+                avatar: faker.image.avatar(),
+                name: terapist.name,
+                email: terapist.email,
+                phone: terapist.phone,
+                rating: Math.floor(Math.random()*6),
+                job: terapist.education,
+                year: terapist.year,
+                speciality: terapist.speciality,
+            })))
         })
         .catch(error =>{ //handle error response
             let errorMessage = error.pesan ? error.pesan : "Terjadi kesalahan pada pengaturan request ini. Silakan hubungi Admin.";

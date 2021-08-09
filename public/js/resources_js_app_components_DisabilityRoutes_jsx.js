@@ -5333,8 +5333,20 @@ function Konsultasi() {
       url: '/konsultasi/getTerapists'
     }).then(function (result) {
       //handle success response
+      (faker__WEBPACK_IMPORTED_MODULE_1___default().locale) = 'id_ID';
       var data = result.data;
-      console.log(data); //todo remove log
+      setTerapists(data.map(function (terapist) {
+        return {
+          avatar: faker__WEBPACK_IMPORTED_MODULE_1___default().image.avatar(),
+          name: terapist.name,
+          email: terapist.email,
+          phone: terapist.phone,
+          rating: Math.floor(Math.random() * 6),
+          job: terapist.education,
+          year: terapist.year,
+          speciality: terapist.speciality
+        };
+      }));
     })["catch"](function (error) {
       //handle error response
       var errorMessage = error.pesan ? error.pesan : "Terjadi kesalahan pada pengaturan request ini. Silakan hubungi Admin.";

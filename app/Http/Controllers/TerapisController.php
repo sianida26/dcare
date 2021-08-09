@@ -20,6 +20,9 @@ class TerapisController extends Controller
                     'name' => $terapis->user->name,
                     'email' => $terapis->user->email,
                     'phone' => $terapis->phone,
+                    'education' => $terapis->education,
+                    'year' => $terapis->terapist_since,
+                    'speciality' => $terapis->speciality->name,
                 ];
             });
 
