@@ -1,7 +1,10 @@
 import React from 'react'
 import Calendar from 'react-calendar'
+import {useHistory} from 'react-router-dom'
 
 export default function Jadwal() {
+
+    const history = useHistory()
 
     const renderTileContent = function({ activeStartDate, date, view }){
         return <div className="tw-w-full tw-flex tw-flex-col tw-gap-0.5">
@@ -10,9 +13,13 @@ export default function Jadwal() {
         </div>
     }
 
+    const handleBack = function(){
+        history.goBack()
+    }
+
     return (
         <div className="tw-w-screen tw-p-6">
-            <i className="bi-arrow-left-short tw-text-5xl tw-font-bold tw-text-primary"></i>
+            <i className="bi-arrow-left-short tw-text-5xl tw-font-bold tw-text-primary" onClick={handleBack}></i>
             <div className="tw-flex tw-flex-col md:tw-flex-col lg:tw-flex-row tw-gap-8 tw-pt-6">
                 <div className="tw-flex tw-flex-col tw-items-center tw-justify-center">
                     <Calendar locale='id-ID' className="tw-p-2 tw-text-center" tileContent={renderTileContent} />
