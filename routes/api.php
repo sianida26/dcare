@@ -26,5 +26,11 @@ Route::middleware('auth:api')->group(function(){
     
     Route::prefix('/konsultasi')->group(function(){
         Route::post('/getTerapists', [TerapisController::class, 'getTerapists']);
+        Route::post('/getAvailableDates', [TerapisController::class, 'getAvailableDates']);
+        Route::post('/chooseJadwalKonsultasi', [TerapisController::class, 'chooseJadwalKonsultasi']);
     });
+});
+
+Route::fallback(function(){
+    abort(404);
 });

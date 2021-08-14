@@ -32,4 +32,14 @@ class Terapis extends Model
     {
         return $this->belongsTo(TerapistSpeciality::class, 'speciality_id');
     }
+
+    /**
+     * Get all of the jadwalKonsultasi for the Terapis
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function jadwalKonsultasi(): HasMany
+    {
+        return $this->hasMany(JadwalKonsultasi::class, 'terapis_id');
+    }
 }

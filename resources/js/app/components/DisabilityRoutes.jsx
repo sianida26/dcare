@@ -5,7 +5,7 @@ import {
     Redirect,
 } from 'react-router-dom'
 
-// import AdminConfigProvider from '../providers/AdminConfigProvider'
+import DisabilityDataProvider from '../providers/DisabilityDataProvider'
 import { useAuth } from '../providers/AuthProvider'
 import routes from '../routes/disability'
 import NotFound from '../pages/NotFound'
@@ -15,7 +15,7 @@ export default function AdminRoutes() {
     const {auth} = useAuth()
 
     return auth.role !== 'disability' ? <Redirect to={{pathname: "/login", state: {from: location}}} /> : (
-        // <AdminConfigProvider>
+        <DisabilityDataProvider>
             <Switch>
                 {routes.map((route, i) => <Route key={i} path={route.path} exact={!route.isNotExact} component={route.component} />)}
                 <Redirect path="/login" to="/" />
@@ -23,6 +23,6 @@ export default function AdminRoutes() {
                     <NotFound />
                 </Route>
             </Switch>
-        // </AdminConfigProvider>
+        </DisabilityDataProvider>
     )
 }

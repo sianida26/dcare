@@ -23,8 +23,10 @@
     "dependencies": {
         "@material-ui/core": "^4.12.3",
         "@types/faker": "^5.5.7",
+        "date-fns": "^2.23.0",
         "dexie": "^3.0.3",
         "faker": "^5.5.3",
+        "moment": "^2.29.1",
         "notistack": "^1.0.10",
         "react": "^17.0.2",
         "react-animated-css": "^1.2.1",

@@ -2,45 +2,26 @@ import React from 'react'
 
 import faker from 'faker'
 
-import { useSnackbar } from 'notistack'
+// import { useSnackbar } from 'notistack'
 
 import { useAuth } from '../../../providers/AuthProvider'
+import { useData } from '../../../providers/DisabilityDataProvider'
+import { useHistory } from 'react-router'
 
 import HeaderLanding from '../../../components/HeaderLanding'
 import TerapistCard from '../../../components/TerapistCard'
 import ornament2 from '../../../assets/ornaments/2.png'
 
-
-const specialities = [
-    'Terapis Disabilitas Intelektual',
-    'Fisioterapis',
-]
-
 export default function Konsultasi() {
 
-    // const {enqueueSnackbar} = useSnackbar()
+    const history = useHistory()
+    const { data, setData } = useData()
+    // const { enqueueSnackbar } = useSnackbar()
     const {axios} = useAuth()
     const [terapists, setTerapists] = React.useState([])
     
     React.useEffect(() => {
-        // faker.locale = 'id_ID'
-        // let list = []
-        // let length = 12
-        // // faker.seed(length)
-        // for (let i = 0; i < length; i++){
-        //     list.push({
-        //         avatar: faker.image.avatar(),
-        //         name: faker.name.findName(),
-        //         email: faker.internet.email().toLowerCase(),
-        //         phone: faker.phone.phoneNumber(),
-        //         rating: Math.floor(Math.random()*6),
-        //         job: faker.name.jobTitle(),
-        //         year: Math.floor(Math.random()*100 + 1921),
-        //         speciality: specialities[Math.floor(Math.random()*specialities.length)]
-        //     })
-        // }
         requestTerapists()
-        
     }, [])
 
     const requestTerapists = () => {
@@ -54,6 +35,7 @@ export default function Konsultasi() {
 
             let data = result.data;
             setTerapists(data.map((terapist) => ({
+                id: terapist.id,
                 avatar: faker.image.avatar(),
                 name: terapist.name,
                 email: terapist.email,
@@ -98,6 +80,13 @@ export default function Konsultasi() {
         // setTerapists(list)
     }
 
+    const handlePilihTerapis = function(terapistId){
+        setData({
+            konsultasiTerapistId: terapistId
+        })
+        history.push('/konsultasi/pilih-tanggal')
+    }
+
     return (
         <div className="tw-relative tw-flex tw-flex-col tw-w-full tw-min-h-screen">
             <HeaderLanding />
@@ -113,7 +102,17 @@ export default function Konsultasi() {
 
                 <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 xl:tw-grid-cols-3 tw-w-full tw-place-items-center tw-gap-12 tw-mt-8 tw-text-sm lg:tw-px-12">
                     {
-                        terapists.map((terapist, i) => <TerapistCard key={i} avatar={terapist.avatar} name={terapist.name} email={terapist.email} phone={terapist.phone} rating={terapist.rating} job={terapist.job} year={terapist.year} speciality={terapist.speciality} />)
+                        terapists.map(terapist => <TerapistCard
+                            onClick={() => handlePilihTerapis(terapist.id)} 
+                            key={terapist.id} 
+                            avatar={terapist.avatar} 
+                            name={terapist.name}
+                            email={terapist.email} 
+                            phone={terapist.phone} 
+                            rating={terapist.rating} 
+                            job={terapist.job} 
+                            year={terapist.year} 
+                            speciality={terapist.speciality} />)
                     }
                 </div>
             </main>

@@ -3,7 +3,7 @@ import faker from 'faker'
 import logo from '../assets/logo/logo-white.png'
 import {useHistory} from 'react-router-dom'
 
-export default function TerapistCard({avatar, name, email, phone, rating, job, year, speciality}) {
+export default function TerapistCard({avatar, name, email, phone, rating, job, year, speciality, onClick}) {
 
     const history = useHistory()
     
@@ -55,7 +55,7 @@ export default function TerapistCard({avatar, name, email, phone, rating, job, y
 
             {/* card footer */}
             <div className="tw-flex tw-gap-2 tw-text-white tw-font-semibold tw-w-full tw-mt-4">
-                <div className="tw-p-3 tw-rounded-xl tw-flex-grow tw-flex tw-justify-center tw-items-center" onClick={handleAgendakan} style={{background: 'linear-gradient(90deg, #256e48 0%, #49ae11 100%)'}}>
+                <div className="tw-p-3 tw-rounded-xl tw-flex-grow tw-flex tw-justify-center tw-items-center" onClick={onClick} style={{background: 'linear-gradient(90deg, #256e48 0%, #49ae11 100%)'}}>
                     <span>Agendakan Konsultasi</span>
                     <i className="bi bi-calendar-check-fill tw-text-xl tw-ml-2" />
                 </div>
