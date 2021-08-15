@@ -5,6 +5,7 @@ import Konsultasi from '../pages/disability/konsultasi/Konsultasi';
 import PilihTanggal from "../pages/disability/konsultasi/PilihTanggal";
 import PilihJam from "../pages/disability/konsultasi/PilihJam";
 import MenungguPembayaranDikonfirmasi from "../pages/disability/konsultasi/MenungguPembayaranDikonfirmasi";
+import Monitoring from '../pages/disability/monitoring/Monitoring'
 
 const routes = [
     {
@@ -34,7 +35,11 @@ const routes = [
     {
         path: '/konsultasi/menunggu-pembayaran-dikonfirmasi',
         component: MenungguPembayaranDikonfirmasi,
-    }
+    },
+    {
+        path: '/monitoring',
+        component: Monitoring,
+    },
 ]
 
 export default routes;

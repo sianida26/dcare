@@ -154,7 +154,7 @@ export default function Login() {
                 <img className="w-full h-full transform absolute" src={ornament1} style={{WebkitTransform: "scaleY(-1)", transform: "scaleY(-1)"}} />
                 <img className="absolute bottom-0 left-0" src={ornament2} />
             </div> */}
-            <img className="tw-w-full tw-h-full tw-transform tw-absolute lg:tw-bottom-16" src={ornament1} style={{WebkitTransform: "scaleY(-1)", transform: "scaleY(-1)"}} />
+            <img className="tw-w-full tw-h-full tw-transform tw-absolute lg:tw-scale-y-125" src={ornament1}/>
             <img className="tw-absolute tw-bottom-0 tw-left-0 md:tw-max-w-2xl" src={ornament2} />
             <div className="tw-max-w-lg tw-w-full tw-h-full tw-flex tw-items-center tw-justify-center tw-px-8">
                 <div className="tw-bg-white tw-max-h-96 tw-h-full tw-rounded-3xl tw-flex tw-flex-col tw-w-full tw-py-6 tw-px-2 tw-border-gray-600 tw-z-10"  style={{boxShadow: '0px 0px 24px 1px rgba(0, 0, 0, 0.25)'}}>

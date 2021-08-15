@@ -6,6 +6,7 @@ import AuthProvider, {useAuth} from './providers/AuthProvider'
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import 'react-calendar/dist/Calendar.css';
+import "react-datepicker/dist/react-datepicker.css"
 
 ReactDOM.render(
     <React.StrictMode>
