@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TerapisController;
+use App\Http\Controllers\MonitoringController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,11 @@ Route::middleware('auth:api')->group(function(){
         Route::post('/getTerapists', [TerapisController::class, 'getTerapists']);
         Route::post('/getAvailableDates', [TerapisController::class, 'getAvailableDates']);
         Route::post('/chooseJadwalKonsultasi', [TerapisController::class, 'chooseJadwalKonsultasi']);
+    });
+
+    Route::prefix('/monitoring')->group(function(){
+        Route::post('/buatLaporan', [MonitoringController::class,'buatLaporan']);
+        Route::post('/getLaporanPerBulan', [MonitoringController::class,'getLaporanPerBulan']);
     });
 });
 

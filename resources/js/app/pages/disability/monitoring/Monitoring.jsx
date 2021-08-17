@@ -4,7 +4,10 @@ import { useHistory } from 'react-router'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import DatePicker from 'react-datepicker'
 import format from 'date-fns/format'
+import parse from 'date-fns/parse'
+import idLocale from 'date-fns/locale/id'
 
+import {useAuth} from '../../../providers/AuthProvider'
 import Header from '../../../components/HeaderLanding'
 import ornament1 from '../../../assets/ornaments/1.png'
 import ornament2 from '../../../assets/ornaments/2.png'
@@ -13,19 +16,133 @@ export default function Monitoring() {
 
     const history = useHistory()
 
+    const { axios } = useAuth()
+
     const [startDate, setStartDate] = React.useState(new Date());
     const [isCalendarMode, setCalendarMode] = React.useState(true)
     const [isModalShow, setModalShow] = React.useState(false)
+    const [perkembangan, setPerkembangan] = React.useState('')
     const [selectedDate, setSelectedDate] = React.useState(new Date()) //todo create null safe method
+    const [listPerkembangan, setListPerkembangan] = React.useState([])
+
+    React.useEffect(function(){
+        requestDataBulanan()
+    },[startDate])
+
+    const requestDataBulanan = function(){
+        axios({
+            url: '/monitoring/getLaporanPerBulan',
+            method: 'post',
+            data: {
+                date: format(startDate,'MM-yyyy'),
+            }
+        })
+        .then(result => { //handle success response
+            let data = result.data;
+            console.log(data) //todo remove log
+            // handleCloseModal()
+            setListPerkembangan(data.map(function(x){
+                return {
+                    ...x,
+                    tanggal: parse(x.tanggal, 'dd-MM-yyyy', new Date())
+                }
+            }))
+        })
+        .catch(error =>{ //handle error response
+            let errorMessage = error.pesan ? error.pesan : "Terjadi kesalahan pada pengaturan request ini. Silakan hubungi Admin.";
+            if (error.request){
+                //Request was made but no response was received
+            } else if (error.response){
+                //Error caused from the server
+                console.log(error.response) //todo remove log
+                let errorCode = error.response.status
+                switch(errorCode){
+                    case 400: /*bad request*/ break;
+                    case 401: /*Unauthorized*/ break;
+                    case 403: /*Forbidden*/ break;
+                    case 404: /*not found*/ break;
+                    case 405: /*method not allowed*/ break;
+                    case 408: /*Request timed out*/ break;
+                    case 409: /*Conflict*/ break;
+                    case 419: /*Page expired, CSRF token missing*/ break;
+                    case 422: /*Validation failed*/ break;
+                    case 429: /*Too Many Request */ break;
+                    case (Math.floor(errorCode/100) === 5): //server error
+                        errorMessage=`Ups. Terjadi error di dalam server. silakan coba lagi nanti (${errorCode})`;
+                        break; 
+                    default: /* Other errors */
+                        errorMessage=`Ups. terjadi error (${errorCode})`;
+                }
+            } else {
+                //Something happened in setting up the request that triggered an Error
+            }
+        })
+        .finally(() => {
+            // setLoading(false)
+        })
+    }
 
     
     const handlePilihTanggal = function(value){
         setModalShow(true)
         setSelectedDate(value)
+        setPerkembangan(listPerkembangan.find(x => {
+            return x.tanggal.getDate() === value.getDate()
+        })?.perkembangan || '')
     }
 
     const handleCloseModal = function(){
         setModalShow(false)
+        setPerkembangan('')
+    }
+
+    const handleSubmitLaporan = function(){
+        axios({
+            url: '/monitoring/buatLaporan',
+            method: 'post',
+            data: {
+                tanggal: format(selectedDate,'dd-MM-yyyy'),
+                perkembangan: perkembangan
+            }
+        })
+        .then(result => { //handle success response
+            let data = result.data;
+            console.log(data) //todo remove log
+            handleCloseModal()
+            requestDataBulanan()
+        })
+        .catch(error =>{ //handle error response
+            let errorMessage = error.pesan ? error.pesan : "Terjadi kesalahan pada pengaturan request ini. Silakan hubungi Admin.";
+            if (error.request){
+                //Request was made but no response was received
+            } else if (error.response){
+                //Error caused from the server
+                console.log(error.response) //todo remove log
+                let errorCode = error.response.status
+                switch(errorCode){
+                    case 400: /*bad request*/ break;
+                    case 401: /*Unauthorized*/ break;
+                    case 403: /*Forbidden*/ break;
+                    case 404: /*not found*/ break;
+                    case 405: /*method not allowed*/ break;
+                    case 408: /*Request timed out*/ break;
+                    case 409: /*Conflict*/ break;
+                    case 419: /*Page expired, CSRF token missing*/ break;
+                    case 422: /*Validation failed*/ break;
+                    case 429: /*Too Many Request */ break;
+                    case (Math.floor(errorCode/100) === 5): //server error
+                        errorMessage=`Ups. Terjadi error di dalam server. silakan coba lagi nanti (${errorCode})`;
+                        break; 
+                    default: /* Other errors */
+                        errorMessage=`Ups. terjadi error (${errorCode})`;
+                }
+            } else {
+                //Something happened in setting up the request that triggered an Error
+            }
+        })
+        .finally(() => {
+            // setLoading(false)
+        })
     }
 
     const renderCalendar = () => {
@@ -33,26 +150,42 @@ export default function Monitoring() {
         return (
             <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-max-w-screen-sm tw-w-full">
                 <PerfectScrollbar>
-                    <Calendar locale='id-ID' onClickDay={handlePilihTanggal} className="tw-text-center" />
+                    <Calendar 
+                        locale='id-ID' 
+                        onActiveStartDateChange={(props) => {
+                            if (props.view === 'month'){
+                                setStartDate(props.activeStartDate)
+                            }
+                        }}
+                        activeStartDate={startDate}
+                        onClickDay={handlePilihTanggal} 
+                        className="tw-text-center" />
                 </PerfectScrollbar>
             </div>
         )
     }
 
+
     const renderKartu = () => {
+
+        const DatePickerCustom = React.forwardRef(({value, onClick}, ref) => (
+            <div className="tw-py-2 tw-font-semibold tw-text-white tw-text-center tw-rounded-lg tw-w-full" style={{background: 'linear-gradient(90deg, #256e48 0%, #49ae11 100%)'}} onClick={onClick} ref={ref}>{format(new Date(startDate), 'MMMM yyyy', {locale: idLocale})}</div>
+        ))
+
         return (
             <div className="tw-bg-gray-50 tw-px-3 tw-py-6 tw-rounded-lg tw-flex tw-flex-col tw-gap-5 tw-items-center tw-justify-center tw-max-w-screen-sm tw-w-full">
-                <div>
+                <div className="tw-flex tw-w-full">
                     <DatePicker
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    dateFormat="MM/yyyy"
-                    showMonthYearPicker
-                />
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                        // dateFormat="MMMM YYYY"
+                        showMonthYearPicker
+                        customInput={<DatePickerCustom />}
+                    /> 
                 </div>
-                <table>
-                    <tbody>
-                        <tr className="tw-flex tw-gap-2">
+                <table className="tw-w-full tw-table-fixed">
+                    <tbody className="tw-w-full">
+                        {/* <tr className="tw-flex tw-gap-2">
                             <td className="tw-py-3">01/08/2021</td>
                             <td className="tw-border-l-4 tw-border-primary">
                                 <div className="tw-pl-2 tw-py-3">
@@ -60,34 +193,23 @@ export default function Monitoring() {
                                     <p className="tw-text-gray-500">dibuat oleh @blablabla pada 19:30 WIB</p>
                                 </div>
                             </td>
-                        </tr>
-                        <tr className="tw-flex tw-gap-2">
-                            <td className="tw-py-3">01/08/2021</td>
-                            <td className="tw-border-l-4 tw-border-primary">
-                                <div className=" tw-pl-2 tw-py-3">
-                                    <p>Motorik tangan Fulan masih lemah perlu dilatih dengan sering memutarkan pergelangan tangan dan melibatkan siku oleh pendamping. Namun unuk otot-otot geraham dan pipi sudah lebih lentur untuk mengunyah. Mohon untuk sering dibangun.</p>
-                                    <p className="tw-text-gray-500">dibuat oleh @blablabla pada 19:30 WIB</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr className="tw-flex tw-gap-2">
-                            <td className="tw-py-3">01/08/2021</td>
-                            <td className="tw-border-l-4 tw-border-primary">
-                                <div className="tw-pl-2 tw-py-3">
-                                    <p>Fulan sudah dapat mengunyah secara mandiri.</p>
-                                    <p className="tw-text-gray-500">dibuat oleh @blablabla pada 19:30 WIB</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr className="tw-flex tw-gap-2">
-                            <td className="tw-py-3">01/08/2021</td>
-                            <td className="tw-border-l-4 tw-border-primary">
-                                <div className=" tw-pl-2 tw-py-3">
-                                    <p>Motorik tangan Fulan masih lemah perlu dilatih dengan sering memutarkan pergelangan tangan dan melibatkan siku oleh pendamping. Namun unuk otot-otot geraham dan pipi sudah lebih lentur untuk mengunyah. Mohon untuk sering dibangun.</p>
-                                    <p className="tw-text-gray-500">dibuat oleh @blablabla pada 19:30 WIB</p>
-                                </div>
-                            </td>
-                        </tr>
+                        </tr> */}
+                        {
+                            listPerkembangan.length ? listPerkembangan.map(function(perkembangan, i){
+
+                                return <tr className="tw-flex tw-gap-2 tw-w-full">
+                                    <td className="tw-py-3 tw-border-r-4 tw-border-primary tw-w-28">{format(perkembangan.tanggal, 'dd/MM/yyyy')}</td>
+                                    <td className="">
+                                        <div className="tw-pl-2 tw-py-3">
+                                            <p>{perkembangan.perkembangan}</p>
+                                            {/* <p className="tw-text-gray-500">dibuat oleh @blablabla pada 19:30 WIB</p> */}
+                                        </div>
+                                    </td>
+                                </tr>
+                            }) : <tr>
+                                <td colSpan={2}>Belum ada perkembangan pada bulan ini</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -106,10 +228,10 @@ export default function Monitoring() {
                 </div>
                 <div className="tw-flex tw-flex-col tw-gap-6 tw-p-4 tw-w-full tw-items-center tw-justify-center tw-bg-white tw-rounded-xl tw-mt-4">
                     <div className="tw-grid tw-grid-cols-2 tw-gap-4 tw-justify-around tw-w-full tw-px-8 ">
-                        <button onClick={() => setCalendarMode(true)} className={`tw-rounded-xl tw-w-full tw-p-1 tw-text-white tw-border-2 ${isCalendarMode ? 'tw-border-0' : 'tw-border-2 tw-border-primary'}`} style={isCalendarMode && {background: 'linear-gradient(90deg, #256e48 0%, #49ae11 100%)'}}>Kalender</button>
-                        <button onClick={() => setCalendarMode(false)} className="tw-rounded-xl tw-w-full tw-p-1 tw-text-white tw-border-2" style={!isCalendarMode ? {background: 'linear-gradient(90deg, #256e48 0%, #49ae11 100%)'} : {borderColor: '#256e48', color: '#256e48'}}>Kartu</button>
+                        <button onClick={() => setCalendarMode(true)} className={`tw-rounded-xl tw-w-full tw-p-1 tw-text-white tw-border-2 focus:tw-outline-none ${isCalendarMode ? '' : 'tw-border-primary tw-text-primary'}`} style={isCalendarMode ? {background: 'linear-gradient(90deg, #256e48 0%, #49ae11 100%)'} : {}}>Kalender</button>
+                        <button onClick={() => setCalendarMode(false)} className={`tw-rounded-xl tw-w-full tw-p-1 tw-text-white tw-border-2 focus:tw-outline-none ${!isCalendarMode ? '' : 'tw-border-primary tw-text-primary'}`} style={!isCalendarMode ? {background: 'linear-gradient(90deg, #256e48 0%, #49ae11 100%)'} : {}}>Kartu</button>
                     </div>
-                    <div>
+                    <div className="tw-w-full tw-flex tw-justify-center">
                         {
                             isCalendarMode ? renderCalendar() : renderKartu()
                         }
@@ -143,11 +265,11 @@ export default function Monitoring() {
                                 <span className="tw-font-bold">Perkembangan</span>
                                 <span className="tw-font-bold">:</span>
                             </div> 
-                            <textarea className="tw-w-full tw-h-80 sm:tw-h-60 tw-p-4 tw-font-medium tw-border-2 tw-rounded-3xl focus:tw-outline-none focus:tw-border-yellow-500"></textarea>
+                            <textarea onChange={(e) => setPerkembangan(e.target.value)} value={perkembangan} className="tw-w-full tw-h-80 sm:tw-h-60 tw-p-4 tw-font-medium tw-border-2 tw-rounded-3xl focus:tw-outline-none focus:tw-border-yellow-500"></textarea>
                         </div>
                     </div>
                     <div className="tw-flex tw-justify-end">
-                        <button className="tw-py-1 tw-px-8 tw-text-white tw-font-semibold tw-rounded-xl" style={{background: 'linear-gradient(90deg, #256e48 0%, #49ae11 100%)'}}>Kirim</button>
+                        <button onClick={handleSubmitLaporan} className="tw-py-1 tw-px-8 tw-text-white tw-font-semibold tw-rounded-xl focus:tw-outline-none" style={{background: 'linear-gradient(90deg, #256e48 0%, #49ae11 100%)'}}>Kirim</button>
                     </div>
                 </div>
             </div>

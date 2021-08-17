@@ -56,4 +56,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Terapis::class);
     }
+
+    /**
+     * Get the monitoring associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function monitoring(): HasOne
+    {
+        return $this->hasOne(Monitoring::class);
+    }
 }
