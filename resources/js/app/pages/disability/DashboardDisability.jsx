@@ -15,6 +15,7 @@ const DASHBOARD_MENUS = [
     {
         icon: 'envelope-open', //todo ganti
         caption: 'Inbox',
+        link: '/inbox'
     },
     {  
         icon: 'graph-up',

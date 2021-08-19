@@ -6,6 +6,7 @@ import PilihTanggal from "../pages/disability/konsultasi/PilihTanggal";
 import PilihJam from "../pages/disability/konsultasi/PilihJam";
 import MenungguPembayaranDikonfirmasi from "../pages/disability/konsultasi/MenungguPembayaranDikonfirmasi";
 import Monitoring from '../pages/disability/monitoring/Monitoring'
+import Inbox from "../pages/shared/inbox/Inbox";
 
 const routes = [
     {
@@ -39,6 +40,10 @@ const routes = [
     {
         path: '/monitoring',
         component: Monitoring,
+    },
+    {
+        path: '/inbox',
+        component: Inbox,
     },
 ]
 
