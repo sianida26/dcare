@@ -40,13 +40,33 @@ export default function Inbox() {
 
     const { axios } = useAuth()
     const [inboxes, setInboxes] = React.useState([])
+    const [isBukaInbox, setBukaInbox] = React.useState(false)
+    const [isLoading, setLoading] = React.useState(true)
+    const [selectedInbox, setSelectedInbox] = React.useState(null)
 
     React.useEffect(function(){
         requestInboxData()
     },[])
 
     const requestInboxData = function(){
-        setInboxes(fakeInboxes) //todo ganti data dari server
+        setTimeout(() => {
+                setLoading(false)
+                setInboxes(fakeInboxes) //todo ganti data dari server
+            }
+        , 1000)
+    }
+
+    const handleBukaInbox = function(inbox){
+        setBukaInbox(true)
+        setSelectedInbox(inbox)
+    }
+
+    const handleModalButtonClick = function(){
+        if (selectedInbox?.type === 'konfirmasi'){
+            setBukaInbox(false)
+        } else {
+            // todo sambungkan ke chat
+        }
     }
 
     return (
@@ -60,82 +80,64 @@ export default function Inbox() {
                         <i className="bi bi-mailbox tw-text-4xl"></i>
                         <span className="tw-font-semibold tw-text-4xl">Inbox</span>
                     </div>
-                    <div className="tw-bg-gray-100 tw-rounded-2xl tw-py-2 tw-px-3 md:tw-px-5 tw-items-center">
+                    <div className="tw-bg-gray-100 tw-rounded-2xl tw-py-2 tw-px-3 md:tw-px-5 tw-flex tw-flex-col tw-items-center">
                         {
-                            inboxes.map(function(){
+                           isLoading ? <p>Loading...</p>
+                           : inboxes.length === 0 ? <p>Tidak ada inbox</p>
+                           : inboxes.map(function(inbox, i){
 
-                                return <div className="tw-flex tw-gap-4 md:tw-gap-8 tw-py-2 tw-items-center tw-border-b-2 tw-border-gray-300">
-                                    <i className="bi bi-envelope-fill tw-text-yellow-500 tw-text-4xl"></i>
+                                return <div key={i} onClick={() => handleBukaInbox(inbox)} className="tw-flex tw-gap-4 md:tw-gap-8 tw-py-2 tw-items-center tw-border-b-2 tw-border-gray-300 tw-w-full">
+                                    <i className={`${inbox.type === 'konfirmasi'? 'bi bi-envelope-fill tw-text-yellow-500' : 'bi bi-exclamation-diamond-fill tw-text-red-500'} tw-text-4xl`}></i>
                                     <div className="tw-flex tw-flex-col tw-flex-grow tw-gap-2">
-                                        <span className="tw-font-semibold tw-text-xl">Jadwal Terkonfirmasi</span>
+                                        <span className="tw-font-semibold tw-text-xl">{inbox.title}</span>
                                         <div className="tw-flex tw-flex-col tw-text-gray-700 tw-text-left">
-                                            <span className="tw-text-lg">18/08/2021 ; 13.00</span>
-                                            <span className="tw-text-lg">Agustin</span>
+                                            <span className="tw-text-lg">{inbox.tanggal}&nbsp;;&nbsp;{inbox.waktu}</span>
+                                            <span className="tw-text-lg">{inbox.pengirim}</span>
                                         </div>
                                     </div>
-                                    <i className="bi bi-trash tw-text-3xl"></i>
+                                    {/* todo tanyakan jadi apa nggak
+                                    <i className="bi bi-trash tw-text-3xl"></i> */} 
                                 </div>
                             })
                         }
-{/*                         
-                        <div className="tw-flex tw-gap-4 md:tw-gap-8 tw-py-2 tw-items-center tw-border-b-2 tw-border-gray-300">
-                            <i className="bi bi-exclamation-diamond-fill tw-text-red-500 tw-text-4xl"></i>
-                            <div className="tw-flex tw-flex-col tw-flex-grow tw-gap-2">
-                                <span className="tw-font-semibold tw-text-xl">30 menit lagi!</span>
-                                <div className="tw-flex tw-flex-col tw-text-gray-700 tw-text-left">
-                                    <span className="tw-text-lg">18/08/2021 ; 13.00</span>
-                                    <span className="tw-text-lg">Agustin</span>
-                                </div>
-                            </div>
-                            <i className="bi bi-trash tw-text-3xl"></i>
-                        </div>
-                        <div className="tw-flex tw-gap-4 md:tw-gap-8 tw-py-2 tw-items-center tw-border-b-2 tw-border-gray-300">
-                            <i className="bi bi-envelope-open-fill tw-text-yellow-500 tw-text-4xl"></i>
-                            <div className="tw-flex tw-flex-col tw-flex-grow tw-gap-2">
-                                <span className="tw-font-semibold tw-text-xl">Jadwal Terkonfirmasi</span>
-                                <div className="tw-flex tw-flex-col tw-text-gray-700 tw-text-left">
-                                    <span className="tw-text-lg">18/08/2021 ; 13.00</span>
-                                    <span className="tw-text-lg">Agustin</span>
-                                </div>
-                            </div>
-                            <i className="bi bi-trash tw-text-3xl"></i>
-                        </div> */}
                     </div>
                 </div>
             </div>
 
             {/* Modal Notifikasi */}
-            <div className="tw-fixed tw-w-screen tw-h-screen tw-bg-black tw-bg-opacity-75 tw-hidden tw-items-center tw-justify-center tw-p-8 md:tw-p-16" style={{zIndex: 900}}>
+            <div className={`tw-fixed tw-w-screen tw-h-screen tw-bg-black tw-bg-opacity-75 ${isBukaInbox ? 'tw-flex' : 'tw-hidden'} tw-items-center tw-justify-center tw-p-8 md:tw-p-16`} style={{zIndex: 900}}>
                 <div className="tw-bg-white tw-rounded-2xl tw-max-w-screen-lg tw-w-full tw-p-4 tw-flex tw-flex-col">
                     <span className="tw-font-semibold tw-text-3xl tw-text-center">Konsultasi</span>
-                    {/* {inbox.tipe === 'konfirmasi' ? <span className="tw-font-medium tw-text-md  tw-text-center tw-mt-4">Selamat, jadwal Anda telah disetujui oleh terapis.</span> : null} */}
+                    <span className="tw-font-medium tw-text-md  tw-text-center tw-mt-4">{selectedInbox?.type === 'konfirmasi' ? 'Selamat, jadwal Anda telah disetujui oleh terapis.' : null}</span>
                     <table className="tw-text-left tw-mt-8">
-                        <tr>
-                            <th className="tw-w-1/5">Pasien</th>
-                            <th className="tw-px-2">:</th>
-                            <td>Fatimah Soraya</td>
-                        </tr>
-                        <tr>
-                            <th className="tw-w-1/5">Ragam</th>
-                            <th className="tw-px-2">:</th>
-                            <td>Down Syndrome</td>
-                        </tr>
-                        <tr>
-                            <th className="tw-w-1/5">Terapis</th>
-                            <th className="tw-px-2">:</th>
-                            <td>Naresh, P.Psi.</td>
-                        </tr>
-                        <tr>
-                            <th className="tw-w-1/5">Waktu Konsultasi</th>
-                            <th className="tw-px-2">:</th>
-                            <td className="tw-flex tw-flex-col md:tw-flex-row tw-gap-1"> 
-                                <span>18/08/2021 ;</span>
-                                <span>13.00 - 14.30 WIB</span>
-                            </td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <th className="tw-w-1/5">Pasien</th>
+                                <th className="tw-px-2">:</th>
+                                <td>{selectedInbox?.content.pasien}</td>
+                            </tr>
+                            <tr>
+                                <th className="tw-w-1/5">Ragam</th>
+                                <th className="tw-px-2">:</th>
+                                <td>{selectedInbox?.content.ragam}</td>
+                            </tr>
+                            <tr>
+                                <th className="tw-w-1/5">Terapis</th>
+                                <th className="tw-px-2">:</th>
+                                <td>{selectedInbox?.content.terapis}</td>
+                            </tr>
+                            <tr>
+                                <th className="tw-w-1/5">Waktu Konsultasi</th>
+                                <th className="tw-px-2">:</th>
+                                <td className="tw-flex tw-flex-col md:tw-flex-row tw-gap-1"> 
+                                    <span>{selectedInbox?.content.tanggal}&nbsp;;</span>
+                                    <span>{selectedInbox?.content.waktu}</span>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                     <div className="tw-flex tw-justify-center tw-mt-8">
-                        <button className="tw-py-1 tw-px-8 tw-text-white tw-font-semibold tw-rounded-xl focus:tw-outline-none" style={{background: 'linear-gradient(90deg, #256e48 0%, #49ae11 100%)'}}>Tutup</button>
+                        <button onClick={handleModalButtonClick} className="tw-py-1 tw-px-8 tw-text-white tw-font-semibold tw-rounded-xl focus:tw-outline-none" style={{background: 'linear-gradient(90deg, #256e48 0%, #49ae11 100%)'}}>{selectedInbox?.type === 'konfirmasi' ? 'Tutup' : 'Chat'}</button>
                     </div>
                 </div>
             </div>
