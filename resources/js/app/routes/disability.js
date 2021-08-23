@@ -5,8 +5,9 @@ import Konsultasi from '../pages/disability/konsultasi/Konsultasi';
 import PilihTanggal from "../pages/disability/konsultasi/PilihTanggal";
 import PilihJam from "../pages/disability/konsultasi/PilihJam";
 import MenungguPembayaranDikonfirmasi from "../pages/disability/konsultasi/MenungguPembayaranDikonfirmasi";
-import Monitoring from '../pages/disability/monitoring/Monitoring';
-import Chat from '../pages/shared/chat/Chat'
+import Monitoring from '../pages/disability/monitoring/Monitoring'
+import Inbox from "../pages/shared/inbox/Inbox";
+import PilihKurikulum from "../pages/disability/kurikulum/PilihKurikulum";
 
 const routes = [
     {
@@ -42,9 +43,13 @@ const routes = [
         component: Monitoring,
     },
     {
-        path: '/chat',
-        component: Chat,
-    }
+        path: '/inbox',
+        component: Inbox,
+    },
+    {
+        path: '/kurikulum',
+        component: PilihKurikulum,
+    },
 ]
 
 export default routes;

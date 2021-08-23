@@ -15,6 +15,7 @@ const DASHBOARD_MENUS = [
     {
         icon: 'envelope-open', //todo ganti
         caption: 'Inbox',
+        link: '/inbox'
     },
     {  
         icon: 'graph-up',
@@ -28,6 +29,7 @@ const DASHBOARD_MENUS = [
     {
         icon: 'card-text',
         caption: 'Kurikulum',
+        link: '/kurikulum'
     },
     {  
         icon: 'person',
