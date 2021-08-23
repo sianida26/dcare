@@ -40,7 +40,5 @@ export default function App() {
             })
     }
 
-    return isBooting? <Splash /> : (
-        <RouteSwitch />
-    )
+    return isBooting? <Splash /> : <RouteSwitch />
 }

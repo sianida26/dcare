@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TerapisController;
 use App\Http\Controllers\MonitoringController;
+use App\Http\Controllers\KonsultasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::middleware('auth:api')->group(function(){
         Route::post('/getTerapists', [TerapisController::class, 'getTerapists']);
         Route::post('/getAvailableDates', [TerapisController::class, 'getAvailableDates']);
         Route::post('/chooseJadwalKonsultasi', [TerapisController::class, 'chooseJadwalKonsultasi']);
+        Route::post('/getChatId', [KonsultasiController::class, 'getChatId']);
     });
 
     Route::prefix('/monitoring')->group(function(){

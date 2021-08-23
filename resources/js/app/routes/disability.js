@@ -5,7 +5,8 @@ import Konsultasi from '../pages/disability/konsultasi/Konsultasi';
 import PilihTanggal from "../pages/disability/konsultasi/PilihTanggal";
 import PilihJam from "../pages/disability/konsultasi/PilihJam";
 import MenungguPembayaranDikonfirmasi from "../pages/disability/konsultasi/MenungguPembayaranDikonfirmasi";
-import Monitoring from '../pages/disability/monitoring/Monitoring'
+import Monitoring from '../pages/disability/monitoring/Monitoring';
+import Chat from '../pages/shared/chat/Chat'
 
 const routes = [
     {
@@ -40,6 +41,10 @@ const routes = [
         path: '/monitoring',
         component: Monitoring,
     },
+    {
+        path: '/chat',
+        component: Chat,
+    }
 ]
 
 export default routes;
