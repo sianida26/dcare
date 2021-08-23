@@ -7,6 +7,7 @@ import PilihJam from "../pages/disability/konsultasi/PilihJam";
 import MenungguPembayaranDikonfirmasi from "../pages/disability/konsultasi/MenungguPembayaranDikonfirmasi";
 import Monitoring from '../pages/disability/monitoring/Monitoring'
 import Inbox from "../pages/shared/inbox/Inbox";
+import PilihKurikulum from "../pages/disability/kurikulum/PilihKurikulum";
 
 const routes = [
     {
@@ -44,6 +45,10 @@ const routes = [
     {
         path: '/inbox',
         component: Inbox,
+    },
+    {
+        path: '/kurikulum',
+        component: PilihKurikulum,
     },
 ]
 

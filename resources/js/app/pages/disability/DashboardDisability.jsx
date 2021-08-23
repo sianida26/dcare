@@ -29,6 +29,7 @@ const DASHBOARD_MENUS = [
     {
         icon: 'card-text',
         caption: 'Kurikulum',
+        link: '/kurikulum'
     },
     {  
         icon: 'person',
