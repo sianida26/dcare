@@ -8,6 +8,8 @@ import MenungguPembayaranDikonfirmasi from "../pages/disability/konsultasi/Menun
 import Monitoring from '../pages/disability/monitoring/Monitoring'
 import Inbox from "../pages/shared/inbox/Inbox";
 import PilihKurikulum from "../pages/disability/kurikulum/PilihKurikulum";
+import Monitoring from '../pages/disability/monitoring/Monitoring';
+import Chat from '../pages/shared/chat/Chat'
 
 const routes = [
     {
@@ -41,6 +43,10 @@ const routes = [
     {
         path: '/monitoring',
         component: Monitoring,
+    },
+    {
+        path: '/chat',
+        component: Chat,
     },
     {
         path: '/inbox',
