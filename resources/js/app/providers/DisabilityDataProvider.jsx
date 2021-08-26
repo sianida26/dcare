@@ -9,7 +9,9 @@ const defaultValues = {
         disabilityForm: {
             openForm: false,
             disabilityId: -1,
-        }
+        },
+        tingkatanKurikulum: '',
+        aspekKurikulum: '',
     },
     setDataState: () => {}
 }

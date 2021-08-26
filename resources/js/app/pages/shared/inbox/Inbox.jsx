@@ -8,6 +8,11 @@ import Header from '../../../components/HeaderLanding'
 import ornament1 from '../../../assets/ornaments/1.png'
 import ornament2 from '../../../assets/ornaments/2.png'
 
+
+// catatan:
+// judul ketika waktunya konsultasi: Saatnya konsultasi
+// judul ketika waktu habis: Waktu konsultasi telah berakhir
+
 export default function Inbox() {
 
     const history = useHistory()
