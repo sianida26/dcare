@@ -1,4 +1,4 @@
-import Logout from "../pages/Logout";
+
 import LandingPage from "../pages/public/LandingPage";
 import Dashboard from "../pages/disability/DashboardDisability";
 import Konsultasi from '../pages/disability/konsultasi/Konsultasi';
@@ -8,18 +8,14 @@ import MenungguPembayaranDikonfirmasi from "../pages/disability/konsultasi/Menun
 import Monitoring from '../pages/disability/monitoring/Monitoring'
 import Inbox from "../pages/shared/inbox/Inbox";
 import PilihKurikulum from "../pages/disability/kurikulum/PilihKurikulum";
-import Monitoring from '../pages/disability/monitoring/Monitoring';
 import Chat from '../pages/shared/chat/Chat'
+import Form from '../pages/disability/form/Form'
 
 const routes = [
-    {
-        path: '/',
-        component: LandingPage,
-    },
-    {
-        path: '/logout',
-        component: Logout,
-    },
+    // {
+    //     path: '/',
+    //     component: LandingPage,
+    // },
     {
         path: '/dashboard',
         component: Dashboard,

@@ -1,35 +1,17 @@
 import React from 'react'
-import { format, getUnixTime, fromUnixTime } from 'date-fns'
-import PerfectScrollbar from 'perfect-scrollbar';
 import { collection, setDoc, onSnapshot, doc, serverTimestamp, query as firebaseQuery, orderBy} from "firebase/firestore";
+import { useHistory } from 'react-router';
 import { v1 as uuidv1 } from 'uuid'
 
 import { useAuth } from '../../../providers/AuthProvider'
+import { useData } from '../../../providers/DisabilityDataProvider';
 import firestoreDB from '../../../services/firebase/firestore'
-
-const CHATS = [
-    {
-        isMe : false,
-        message: 'Haaai',
-        timestamp: 1584161862798,
-        id: uuidv1(),
-    },
-    {
-        isMe : true,
-        message: 'Apaa',
-        timestamp: 1584166862798,
-        id: uuidv1(),
-    },
-    {
-        isMe : true,
-        message: '???',
-        timestamp: 1584761862798,
-        id: uuidv1(),
-    }
-]
 
 export default function Chat() {
 
+    const history = useHistory()
+
+    const { data, setData } = useData()
     const { axios, auth } = useAuth()
     const messagesEndRef = React.useRef(null)
 
@@ -37,13 +19,18 @@ export default function Chat() {
     const [userId, setUserId] = React.useState(-1)
     const [messages, setMessages] = React.useState([])
     const [isOnline, setOnline] = React.useState(false)
-    const [chats, setChats] = React.useState(CHATS)
     const [inputText, setInputText] = React.useState('')
     const [roomId, setRoomId] = React.useState(null)
     const [rommRef, setRoomRef] = React.useState(null)
+    const [dataKonsultasi, setDataKonsultasi] = React.useState(null)
 
     React.useEffect(function(){
-        requestChatId()
+        if (data.konsultasiChat === null || data.konsultasiChat.type === "future") {
+            history.replace('/')
+            return
+        }
+        setDataKonsultasi(data.konsultasiChat)
+        requestChatId(data.konsultasiChat.id)
     }, [])
 
     React.useEffect(function(){
@@ -65,14 +52,10 @@ export default function Chat() {
         return () => unsubscribe()
     }, [roomId])
 
-    React.useEffect(function(){
-        
-    }, [messages])
-
     const handleSendMessage = async function(event){
         event.preventDefault()
         let msg = inputText
-        if (!msg) return;
+        if (!msg || dataKonsultasi?.type !== "ongoing") return;
         setInputText('')
 
         //send message to firebase server
@@ -91,8 +74,12 @@ export default function Chat() {
     }
 
 
-    const requestChatId = function(){
-        axios({url: '/konsultasi/getChatId', method: 'post'})
+    const requestChatId = function(id){
+        axios({
+            data: {id},
+            method: 'post',
+            url: '/konsultasi/getChatId', 
+        })
         .then(result => { //handle success response
             console.log(result) //todo remove log
             setRoomId(result.data)
@@ -137,12 +124,13 @@ export default function Chat() {
             <div className="tw-w-full tw-bg-primary tw-text-white tw-flex tw-rounded-xl tw-py-2 tw-items-center tw-gap-2 tw-mb-4">
                 <div className="tw-relative">
                     <div className="tw-w-12 tw-h-12 tw-rounded-full tw-bg-blue-500 tw-mx-2">{/* todo ubah jadi img */}</div>
-                    <div className={`tw-w-4 tw-h-4 tw-rounded-full ${isOnline ? "tw-bg-green-500" : "tw-bg-gray-300"} tw-absolute tw-right-1 tw-top-0`}></div>
-                    <div className={`tw-w-4 tw-h-4 tw-rounded-full ${isOnline ? "tw-bg-green-500 tw-animate-ping" : "tw-bg-gray-300"} tw-absolute tw-right-1 tw-top-0`}></div>
+                    {/* <div className={`tw-w-4 tw-h-4 tw-rounded-full ${isOnline ? "tw-bg-green-500" : "tw-bg-gray-300"} tw-absolute tw-right-1 tw-top-0`}></div>
+                    <div className={`tw-w-4 tw-h-4 tw-rounded-full ${isOnline ? "tw-bg-green-500 tw-animate-ping" : "tw-bg-gray-300"} tw-absolute tw-right-1 tw-top-0`}></div> */}
                 </div>
                 <div className="tw-flex grow tw-flex-col tw-text-sm">
-                    <p>Ini Nama</p>
-                    <p className="tw-font-semibold">{isOnline ? 'Sedang aktif' : 'Sedang tidak aktif'}</p>
+                    {/* <p>Ini Nama</p> */}
+                    <p className="tw-font-semibold">{dataKonsultasi?.terapis}</p>
+                    {/* <p className="tw-font-semibold">{isOnline ? 'Sedang aktif' : 'Sedang tidak aktif'}</p> */}
                 </div>
             </div>
             {/* chat room */}
@@ -163,7 +151,7 @@ export default function Chat() {
             </div>
 
             {/* input section */}
-            <form className="tw-gap-2 tw-w-full tw-flex tw-mt-4" onSubmit={handleSendMessage}>
+            <form className={`tw-gap-2 tw-w-full tw-flex tw-mt-4 ${dataKonsultasi?.type !== "ongoing" && 'tw-hidden'}`} onSubmit={handleSendMessage}>
                 <div className="tw-flex-grow">
                     <input onChange={(e) => setInputText(e.target.value)} value={inputText} className="tw-border tw-border-gray-500 tw-rounded-lg tw-p-2 tw-w-full" />
                 </div>

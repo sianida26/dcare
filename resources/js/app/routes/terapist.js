@@ -5,10 +5,10 @@ import Jadwal from '../pages/terapis/Jadwal';
 import Chat from '../pages/shared/chat/Chat'
 
 const routes = [
-    {
-        path: '/',
-        component: LandingPage,
-    },
+    // {
+    //     path: '/',
+    //     component: LandingPage,
+    // },
     {
         path: '/dashboard',
         component: Dashboard,

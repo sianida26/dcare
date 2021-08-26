@@ -21,7 +21,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['disabled'],
+    },
   },
   plugins: [],
   prefix: 'tw-'

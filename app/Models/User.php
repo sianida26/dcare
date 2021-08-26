@@ -58,6 +58,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the disability associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function disability(): HasOne
+    {
+        return $this->hasOne(Disability::class);
+    }
+
+    /**
      * Get the monitoring associated with the User
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -65,5 +75,15 @@ class User extends Authenticatable
     public function monitoring(): HasOne
     {
         return $this->hasOne(Monitoring::class);
+    }
+
+    /**
+     * Get all of the jadwalKonsultasis for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function jadwalKonsultasis(): HasMany
+    {
+        return $this->hasMany(JadwalKonsultasi::class);
     }
 }

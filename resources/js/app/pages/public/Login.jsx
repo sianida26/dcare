@@ -61,6 +61,19 @@ export default function Login() {
         .then(response => {
             console.log(response)
             setRegisterErrors({})
+            let data = response.data
+            setAuthState({
+                name: data.name,
+                role: data.role,
+                email: data.email,
+                username: data.username,
+                token: data.token
+            })
+            db.auth.put({key: 'auth_token', value: data.token})
+            db.auth.put({key: 'name', value: data.name})
+            db.auth.put({key: 'username', value: data.username})
+            db.auth.put({key: 'email', value: data.email})
+            db.auth.put({key: 'role', value: data.role})
             history.replace('/dashboard')
         })
         .catch(err => {
@@ -85,6 +98,7 @@ export default function Login() {
             setAuthState({
                 name: data.name,
                 role: data.role,
+                email: data.email,
                 username: data.username,
                 token: data.token
             })
@@ -92,6 +106,7 @@ export default function Login() {
             db.auth.put({key: 'auth_token', value: data.token})
             db.auth.put({key: 'name', value: data.name})
             db.auth.put({key: 'username', value: data.username})
+            db.auth.put({key: 'email', value: data.email})
             db.auth.put({key: 'role', value: data.role})
             history.replace('/dashboard')
         })

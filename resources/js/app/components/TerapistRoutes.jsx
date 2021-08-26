@@ -18,7 +18,8 @@ export default function AdminRoutes() {
         // <AdminConfigProvider>
             <Switch>
                 {routes.map((route, i) => <Route key={i} path={route.path} exact={!route.isNotExact} component={route.component} />)}
-                <Redirect path="/login" to="/" />
+                <Redirect path="/login" to="/dashboard" />
+                <Redirect path="/" to="/dashboard" exact />
                 <Route>
                     <NotFound />
                 </Route>

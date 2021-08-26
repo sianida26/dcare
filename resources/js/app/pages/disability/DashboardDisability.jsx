@@ -1,6 +1,7 @@
 import React from 'react'
 
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { useAuth } from '../../providers/AuthProvider'
 
 import HeaderLanding from '../../components/HeaderLanding'
 import QnAImage from '../../assets/images/qna.png'
@@ -40,6 +41,8 @@ const DASHBOARD_MENUS = [
 export default function DashboardDisability() {
 
     const history = useHistory()
+
+    const { axios } = useAuth()
 
     return (
         <div className="tw-w-full tw-flex tw-flex-col tw-relative">

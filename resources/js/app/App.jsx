@@ -27,13 +27,14 @@ export default function App() {
     }, [])
 
     const boot = async () => {
-        db.auth.bulkGet(['auth_token', 'name', 'username', 'role'])
-            .then(([token, name, username, role]) => {
+        db.auth.bulkGet(['auth_token', 'name', 'username', 'role', 'email'])
+            .then(([token, name, username, role, email]) => {
                 setAuthState({
                     name: name?.value || '',
                     username: username?.value || '',
                     role: role?.value || undefined,
-                    token: token?.value || ''
+                    token: token?.value || '',
+                    email: email?.value || '',
                 })
                 setBooting(false)
                 console.log(role)

@@ -3,8 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TerapisController;
+use App\Http\Controllers\InboxController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\KonsultasiController;
 
@@ -25,6 +27,13 @@ Route::post('/login',[AuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function(){
     Route::get('/logout', [AuthController::class, 'logout']);
+
+    Route::post('/init', [AppController::class, 'init']);
+    Route::post('/submitDisabilityForm', [AppController::class, 'submitDisabilityForm']);
+
+    Route::prefix('/inbox')->group(function(){
+        Route::get('getInboxes', [InboxController::class, 'getInboxes']);
+    });
     
     Route::prefix('/konsultasi')->group(function(){
         Route::post('/getTerapists', [TerapisController::class, 'getTerapists']);

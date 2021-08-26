@@ -42,7 +42,13 @@ class AuthController extends Controller
         $user->save();
         $role = Role::firstWhere('name','disability');
         $user->assignRole($role);
-        return $user;
+        return [
+            // 'username' => $user->username,
+            'name' => $user->name,
+            'role' => $role->name,
+            'email' => $user->email,
+            'token' => $user->createToken('auth token')->accessToken,
+        ];
     }
 
     public function registerTerapis(Request $request){
@@ -88,7 +94,13 @@ class AuthController extends Controller
         $user->terapist()->save($terapis);
         $role = Role::firstWhere('name','terapist');
         $user->assignRole($role);
-        return $user;
+        return [
+            // 'username' => $user->username,
+            'name' => $user->name,
+            'role' => $role->name,
+            'email' => $user->email,
+            'token' => $user->createToken('auth token')->accessToken,
+        ];
     }
 
     public function login(Request $request){
@@ -109,6 +121,7 @@ class AuthController extends Controller
                 // 'username' => $user->username,
                 'name' => $user->name,
                 'role' => $user->roles->first()->name,
+                'email' => $user->email,
                 'token' => $user->createToken('auth token')->accessToken,
             ];
         } else {

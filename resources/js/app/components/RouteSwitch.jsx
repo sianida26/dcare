@@ -17,7 +17,7 @@ export default function RouteSwitch() {
     const AdminRoutes = React.lazy(() => import('./AdminRoutes'))
     const DeveloperRoutes = React.lazy(() => import('./DeveloperRoutes'))
     const TerapistRoutes = React.lazy(() => import('./TerapistRoutes'))
-    const DisabilityRoutes = React.lazy(() => import('./DisabilityRoutes'))
+    const DisabilityApp = React.lazy(() => import('./DisabilityApp'))
     const VolunteerRoutes = React.lazy(() => import('./VolunteerRoutes'))
 
     const {auth} = useAuth()
@@ -35,7 +35,7 @@ export default function RouteSwitch() {
                     auth.role === 'developer' ? <DeveloperRoutes />
                     : auth.role === 'admin' ? <AdminRoutes /> 
                     : auth.role === 'terapist' ? <TerapistRoutes />
-                    : auth.role === 'disability' ? <DisabilityRoutes />
+                    : auth.role === 'disability' ? <DisabilityApp />
                     : auth.role === 'volunteer' ? <VolunteerRoutes /> : <GuestRoutes />
                 }
             </React.Suspense>

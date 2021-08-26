@@ -9,28 +9,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class JadwalKonsultasi extends Model
+class Disability extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
     protected $casts = [
-        'jadwal' => 'datetime:d-n-Y; H:i',
+        'created_at' => 'date:d-m-Y',
     ];
 
     /**
-     * Get the terapis that owns the JadwalKonsultasi
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function terapis(): BelongsTo
-    {
-        return $this->belongsTo(Terapis::class, 'terapis_id');
-    }
-
-    /**
-     * Get the user that owns the JadwalKonsultasi
+     * Get the user that owns the Disability
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
