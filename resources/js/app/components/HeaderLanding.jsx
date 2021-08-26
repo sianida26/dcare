@@ -1,14 +1,19 @@
 import React, {useState} from 'react'
 import { useHistory } from 'react-router'
 
+import { useAuth } from '../providers/AuthProvider'
+
 import logo from '../assets/logo/logo-green.png'
 
 export default function HeaderLanding() {
 
+    const history = useHistory()
+
+    const { auth } = useAuth()
+
     const navItems = ['Beranda', 'Layanan', 'News', 'Toko', 'Kerjasama', 'Kontak']
     const [isNavbarExpanding, setNavbarExpanding] = useState(false)
 
-    const history = useHistory()
 
     return (
         <div className="tw-w-full tw-absolute tw-z-40">
@@ -29,8 +34,10 @@ export default function HeaderLanding() {
                         <i className="bi-search"></i>
                     </div>
                     {/* profile or login */}
-                    <div className="tw-rounded-full tw-bg-white tw-w-9 tw-h-9 tw-flex tw-items-center tw-justify-center" onClick={() => history.push('/login')} style={{boxShadow: '0px 0px 12px 4px rgba(0, 0, 0, 0.25)'}}> 
-                        <i className="bi-person-fill"></i>
+                    <div className="tw-rounded-full tw-bg-white tw-w-9 tw-h-9 tw-flex tw-items-center tw-justify-center" onClick={() => auth.token ? history.replace('/logout') : history.push('/login')} style={{boxShadow: '0px 0px 12px 4px rgba(0, 0, 0, 0.25)'}}> 
+                        {
+                            auth.token ? <i className="bi-door-open-fill" /> : <i className="bi-person-fill" />
+                        }
                     </div>
                     {
                         isNavbarExpanding ? (

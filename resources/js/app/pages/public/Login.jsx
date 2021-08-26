@@ -16,26 +16,24 @@ export default function Login() {
 
     const history = useHistory()
 
+    const [isLoading, setLoading] = useState(false)
     const [isLogin, setLogin] = useState(true)
+    const [loginError, setLoginError] = useState('');
     const [formRegister, setFormRegister] = useState({
         fullname: '',
         email: '',
         password: '',
     })
-
     const [formLogin, setFormLogin] = useState({
         email: '',
         password: '',
     })
-
     const [registerErrors, setRegisterErrors] = useState({
         fullname: '',
         email: '',
         password: '',
         role: '',
     })
-
-    const [loginError, setLoginError] = useState('');
 
     const handleFormRegisterChange = (name, value) => {
         setFormRegister(prev => ({
@@ -53,6 +51,7 @@ export default function Login() {
 
     const handleSubmitRegister = (e) => {
         e.preventDefault()
+        setLoading(true)
         axios({
             method: 'post',
             url: 'api/register',
@@ -82,10 +81,14 @@ export default function Login() {
                 setRegisterErrors(err.response.data.errors)
             }
         })
+        .finally(() => {
+            setLoading(false)
+        })
     }
 
     const handleSubmitLogin = (e) => {
         e.preventDefault()
+        setLoading(true)
         axios({
             method: 'post',
             url: 'api/login',
@@ -114,7 +117,12 @@ export default function Login() {
             console.log(err)
             if (err.response?.status === 422) {
                 setLoginError('Username atau password salah')
+            } else {
+                setLoginError('Terjadi kesalahan. silakan coba beberapa saat lagi')
             }
+        })
+        .finally(() => {
+            setLoading(false)
         })
     }
 
@@ -125,14 +133,35 @@ export default function Login() {
                 <span className="tw-text-red-500 tw-text-sm tw-font-semibold tw-absolute tw--top-10">{loginError}</span>
                 <div className="">
                     <span className="tw-font-semibold">Email</span>
-                    <input className={`tw-w-full focus:tw-outline-none tw-bg-gray-200 tw-py-1 tw-px-2 tw-rounded-lg`} type="email" value={formLogin.email} onChange={(e) => handleFormLoginChange('email', e.target.value)} />
+                    <input 
+                        className={`tw-w-full focus:tw-outline-none tw-bg-gray-200 tw-py-1 tw-px-2 tw-rounded-lg ${isLoading && 'tw-opacity-70'}`} 
+                        type="email" 
+                        disabled={isLoading}
+                        value={formLogin.email} 
+                        onChange={(e) => handleFormLoginChange('email', e.target.value)} 
+                    />
                 </div>
                 <div className="">
                     <span className="tw-font-semibold">Password</span>
-                    <input className={`tw-w-full focus:tw-outline-none tw-bg-gray-200 tw-py-1 tw-px-2 tw-rounded-lg`} type="password" value={formLogin.password} onChange={(e) => handleFormLoginChange('password', e.target.value)} />
+                    <input 
+                        className={`tw-w-full focus:tw-outline-none tw-bg-gray-200 tw-py-1 tw-px-2 tw-rounded-lg ${isLoading && 'tw-opacity-70'}`} 
+                        type="password" 
+                        value={formLogin.password} 
+                        onChange={(e) => handleFormLoginChange('password', e.target.value)} 
+                    />
                 </div>
 
-                <button className="tw-w-full tw-rounded-md tw-bg-primary tw-text-white tw-font-bold tw-py-3">Masuk</button>
+                <button 
+                    className={`tw-w-full tw-rounded-md tw-flex tw-justify-center tw-items-center tw-gap-3 tw-bg-primary tw-text-white tw-font-bold tw-py-3 ${isLoading && 'tw-opacity-70'}`}
+                    disabled={isLoading}
+                    type="submit"
+                >
+                    {isLoading && <svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="tw-opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="tw-opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>}
+                    Masuk
+                </button>
             </form>
         )
     }
@@ -143,20 +172,49 @@ export default function Login() {
             <form onSubmit={handleSubmitRegister} className="tw-flex tw-flex-col tw-gap-y-8 tw-relative">
                 <div className="">
                     <span className="tw-font-semibold">Nama Lengkap</span>
-                    <input className={`tw-w-full focus:tw-outline-none tw-bg-gray-200 tw-py-1 tw-px-2 tw-rounded-lg ${registerErrors.fullname && 'tw-border tw-border-red-500'}`} type="" value={formRegister.fullname} onChange={(e) => handleFormRegisterChange('fullname', e.target.value)} />
+                    <input 
+                        className={`tw-w-full focus:tw-outline-none tw-bg-gray-200 tw-py-1 tw-px-2 tw-rounded-lg ${registerErrors.fullname && 'tw-border tw-border-red-500'} ${isLoading && 'tw-opacity-70'}`} 
+                        type="" 
+                        disabled={isLoading}
+                        value={formRegister.fullname} 
+                        onChange={(e) => handleFormRegisterChange('fullname', e.target.value)} 
+                    />
                     <span className="tw-text-red-500 tw-text-sm tw-font-semibold">{registerErrors.fullname}</span>
                 </div>
                 <div className="">
                     <span className="tw-font-semibold">Email</span>
-                    <input className={`tw-w-full focus:tw-outline-none tw-bg-gray-200 tw-py-1 tw-px-2 tw-rounded-lg ${registerErrors.email && 'tw-border tw-border-red-500'}`} type="email" value={formRegister.email} onChange={(e) => handleFormRegisterChange('email', e.target.value)} />
+                    <input 
+                        className={`tw-w-full focus:tw-outline-none tw-bg-gray-200 tw-py-1 tw-px-2 tw-rounded-lg ${registerErrors.email && 'tw-border tw-border-red-500'} ${isLoading && 'tw-opacity-70'}`} 
+                        type="email" 
+                        disabled={isLoading}
+                        value={formRegister.email} 
+                        onChange={(e) => handleFormRegisterChange('email', e.target.value)} />
                     <span className="tw-text-red-500 tw-text-sm tw-font-semibold">{registerErrors.email}</span>
                 </div>
                 <div className="">
                     <span className="tw-font-semibold">Password</span>
-                    <input className={`tw-w-full focus:tw-outline-none tw-bg-gray-200 tw-py-1 tw-px-2 tw-rounded-lg ${registerErrors.password && 'tw-border tw-border-red-500'}`} type="password" value={formRegister.password} onChange={(e) => handleFormRegisterChange('password', e.target.value)}/>
+                    <input 
+                        className={`tw-w-full focus:tw-outline-none tw-bg-gray-200 tw-py-1 tw-px-2 tw-rounded-lg ${registerErrors.password && 'tw-border tw-border-red-500'} ${isLoading && 'tw-opacity-70'}`} 
+                        type="password" 
+                        disabled={isLoading}
+                        value={formRegister.password} 
+                        onChange={(e) => handleFormRegisterChange('password', e.target.value)}
+                    />
                     <span className="tw-text-red-500 tw-text-sm tw-font-semibold">{registerErrors.password}</span>
                 </div>
-                <button className="tw-w-full tw-rounded-md tw-bg-primary tw-text-white tw-font-bold tw-py-3" type="submit">Daftar Sekarang</button>
+                {/* todo delete below */}
+                {/* <button className="tw-w-full tw-rounded-md tw-bg-primary tw-text-white tw-font-bold tw-py-3" type="submit">Daftar Sekarang</button> */}
+                <button 
+                    className={`tw-w-full tw-rounded-md tw-flex tw-justify-center tw-items-center tw-gap-3 tw-bg-primary tw-text-white tw-font-bold tw-py-3 ${isLoading && 'tw-opacity-70'}`}
+                    disabled={isLoading}
+                    type="submit"
+                >
+                    {isLoading && <svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="tw-opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="tw-opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>}
+                    Daftar Sekarang
+                </button>
             </form>
         )
     }
@@ -177,8 +235,8 @@ export default function Login() {
                         <div className="tw-px-10">
                             {/* login register */}
                             <div className="tw-flex tw-items-center tw-justify-between">
-                                <span onClick={() => setLogin(false)} className={`tw-text-primary ${!isLogin ? "tw-border-b-2 tw-font-bold" : 'tw-font-semibold'} tw-border-primary`}>Mendaftar</span>
-                                <span onClick={() => setLogin(true)} className={`tw-text-primary ${isLogin ? "tw-border-b-2 tw-font-bold" : 'tw-font-semibold'} tw-border-primary`}>Masuk</span>
+                                <span onClick={() => !isLoading && setLogin(false)} className={`tw-text-primary ${!isLogin ? "tw-border-b-2 tw-font-bold" : 'tw-font-semibold'} tw-border-primary ${isLoading && 'tw-opacity-70'}`}>Mendaftar</span>
+                                <span onClick={() => !isLoading && setLogin(true)} className={`tw-text-primary ${isLogin ? "tw-border-b-2 tw-font-bold" : 'tw-font-semibold'} tw-border-primary ${isLoading && 'tw-opacity-70'}`}>Masuk</span>
                             </div>
 
                             <div className="tw-mt-16">
