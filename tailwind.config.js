@@ -14,6 +14,9 @@ module.exports = {
         '1/4' : '25%',
         '3/4' : '75%',
       },
+      minHeight:{
+        '60' : '5rem',
+      },
       minWidth: {
         '1/4' : '25%',
         '3/4' : '75%',
@@ -23,6 +26,8 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+  ],
   prefix: 'tw-'
 }

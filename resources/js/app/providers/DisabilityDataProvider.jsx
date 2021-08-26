@@ -4,6 +4,8 @@ const defaultValues = {
     data: {
         konsultasiTerapistId: -1,
         jamKonsultasis: [],
+        tingkatanKurikulum: '',
+        aspekKurikulum: '',
     },
     setDataState: () => {}
 }

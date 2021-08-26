@@ -5,7 +5,12 @@ import Header from '../../../components/HeaderLanding'
 import ornament1 from '../../../assets/ornaments/1.png'
 import ornament2 from '../../../assets/ornaments/2.png'
 
-const fakeInboxes = [
+
+// catatan:
+// judul ketika waktunya konsultasi: Saatnya konsultasi
+// judul ketika waktu habis: Waktu konsultasi telah berakhir
+
+const fakeInboxes= [ //todo hapus
     {
         type: 'konfirmasi', //selamat
         title: 'Jadwal Terkonfirmasi',
