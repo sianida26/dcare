@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactPlayer from 'react-player'
 
 import Header from '../../../components/HeaderLanding'
 import ornament2 from '../../../assets/ornaments/2.png'
