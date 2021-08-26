@@ -10,6 +10,7 @@ import Inbox from "../pages/shared/inbox/Inbox";
 import Kurikulum from "../pages/disability/kurikulum/Kurikulum";
 import Aspek from "../pages/disability/kurikulum/Aspek";
 import Chat from '../pages/shared/chat/Chat'
+import Splash from '../pages/splash'
 
 const routes = [
     {
@@ -59,6 +60,10 @@ const routes = [
     {
         path: '/kurikulum/aspek',
         component: Aspek,
+    },
+    {
+        path: '/splash',
+        component: Splash,
     },
 ]
 
