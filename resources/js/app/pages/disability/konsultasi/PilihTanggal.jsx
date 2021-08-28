@@ -38,7 +38,7 @@ export default function Jadwal() {
             let typedData = Object.fromEntries(Object.entries(responseData).map(([key, value]) => {
                 let newValue = value.map(jadwal => ({
                     available: jadwal.available,
-                    dateTime: new Date(jadwal.dateTime.slice(0,-1))
+                    dateTime: new Date(jadwal.dateTime)
                 }))
                 return [key, newValue]
             }))
