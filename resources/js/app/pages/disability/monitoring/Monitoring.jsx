@@ -234,7 +234,7 @@ export default function Monitoring() {
                     <div className="tw-w-full tw-flex tw-justify-center">
                         {
                             isCalendarMode ? renderCalendar() : renderKartu()
-                        }
+                        } 
                     </div>
                     {/* <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-max-w-screen-sm tw-w-full">
                         <PerfectScrollbar>

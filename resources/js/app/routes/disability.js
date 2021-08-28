@@ -11,6 +11,9 @@ import Chat from '../pages/shared/chat/Chat'
 import Form from '../pages/disability/form/Form'
 import Kurikulum from "../pages/disability/kurikulum/Kurikulum";
 import Aspek from "../pages/disability/kurikulum/Aspek";
+import Splash from '../pages/Splash';
+import TerapisTerdekat from '../pages/disability/terapisTerdekat/TerapisTerdekat'
+
 
 const routes = [
     // {
@@ -56,6 +59,14 @@ const routes = [
     {
         path: '/kurikulum/aspek',
         component: Aspek,
+    },
+    {
+        path: '/splash',
+        component: Splash,
+    },
+    {
+        path: '/terapis-terdekat',
+        component: TerapisTerdekat,
     },
 ]
 

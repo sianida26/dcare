@@ -1,7 +1,7 @@
 {
-    "/js/index.js": "/js/index.js?id=d03e14739c15442d2b11",
-    "/css/fonts/poppins.css": "/css/fonts/poppins.css?id=7a0edd31fabf69c937ef",
-    "/css/bootstrap-icons.css": "/css/bootstrap-icons.css?id=b0dfc973e99728fcf422",
-    "/css/app.css": "/css/app.css?id=8cc4e3d09187b3eb8a06",
-    "/css/tailwind.css": "/css/tailwind.css?id=bf5dbf1d8cfc4b1ad50c"
+    "/js/index.js": "/js/index.js",
+    "/css/fonts/poppins.css": "/css/fonts/poppins.css",
+    "/css/bootstrap-icons.css": "/css/bootstrap-icons.css",
+    "/css/app.css": "/css/app.css",
+    "/css/tailwind.css": "/css/tailwind.css"
 }
