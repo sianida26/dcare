@@ -14,6 +14,16 @@ class Terapis extends Model
     use HasFactory;
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'latitude' => 'decimal:8',
+        'longitude' => 'decimal:8',
+    ];
+
+    /**
      * Get the user that owns the Terapis
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

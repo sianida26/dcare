@@ -26,6 +26,7 @@ const DASHBOARD_MENUS = [
     {
         icon: 'search', //todo ganti
         caption: 'Temukan Terapis Terdekat',
+        link: '/terapis-terdekat'
     },
     {
         icon: 'card-text',

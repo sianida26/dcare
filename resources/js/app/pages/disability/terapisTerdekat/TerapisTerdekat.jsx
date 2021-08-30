@@ -7,7 +7,10 @@ import Leaflet from 'leaflet'
 export default function TerapisTerdekat() {
 
     const position = [-7.895279, 112.609193]
+
     const { axios } = useAuth()
+
+    const [ data, setData ] = React.useState([])
 
     React.useEffect(() => {
         axios({
@@ -15,7 +18,8 @@ export default function TerapisTerdekat() {
             method: 'post',
         })
         .then(response => {
-            console.log(response.data)
+            console.log(response.data) //todo remove log
+            setData(response.data)
         })
         .catch(error => {
             console.log('error')
@@ -39,7 +43,7 @@ export default function TerapisTerdekat() {
                         zoom={12}
                         zoomControl={false}
                     >
-                        <Marker 
+                        {/* <Marker 
                             position={[-7.895279, 112.609193]}
                             icon={LeafletMarker}
                         >
@@ -54,7 +58,26 @@ export default function TerapisTerdekat() {
                                 </div>
                                 
                             </Popup>
-                        </Marker>
+                        </Marker> */}
+                        {
+                            data.map((data, i) => <Marker 
+                                position={data.location}
+                                icon={LeafletMarker}
+                                key={i}
+                            >
+                                <Popup>
+                                    <div className="tw-flex tw-flex-col tw-gap-1">
+                                        <span className="tw-font-semibold">{data.name}</span>
+                                        <div className="tw-flex tw-gap-1">
+                                            <span className="tw-font-semibold">Spesialitas</span>
+                                            <span className="tw-font-semibold">:</span>
+                                            <span>{data.speciality}</span>
+                                        </div>
+                                    </div>
+                                    
+                                </Popup>
+                            </Marker>)
+                        }
                         <TileLayer
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -63,7 +86,7 @@ export default function TerapisTerdekat() {
                     </MapContainer>
                 </div>
                 <div 
-                    className="tw-absolute tw-top-16 tw-flex tw-flex-col tw-gap-4 tw-items-end tw-bg-white tw-rounded-r-full tw-py-2 tw-px-4 tw-absolute tw-top-0 tw-left-0"
+                    className="tw-flex tw-flex-col tw-gap-4 tw-items-end tw-bg-white tw-rounded-r-full tw-py-2 tw-px-4 tw-absolute tw-top-16 tw-left-0"
                     style={{zIndex: 1001}}
                 >
                     <span className="tw-font-semibold tw-text-2xl tw-text-primary">Cari Terapis Terdekat</span>

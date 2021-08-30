@@ -98,6 +98,15 @@ class TerapisController extends Controller
 
     public function findNearby(Request $request){
         
-        return 'ok';
+        return Terapis::all()
+        ->map(function($terapis){
+
+            return [
+                'name' => $terapis->user->name,
+                'speciality' => $terapis->speciality->name,
+                'location' => [floatval($terapis->latitude), floatval($terapis->longitude)],
+            ];
+        })
+        ->all();
     }
 }
