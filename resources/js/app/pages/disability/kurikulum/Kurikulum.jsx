@@ -10,96 +10,257 @@ import kurikulum4 from '../../../assets/images/non_advanced.png'
 import bunder from '../../../assets/images/bunder.png'
 
 import { useData } from '../../../providers/DisabilityDataProvider'
+import { useAuth } from '../../../providers/AuthProvider'
 
 import { useHistory } from 'react-router-dom'
 import { isNull } from 'lodash'
 
-const listKurikulum = [
-    {
-        title: 'Intermediet',
-        tingkatan: [
-            {
-                title: 'Tingkatan 1',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-            {
-                title: 'Tingkatan 2',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-            {
-                title: 'Tingkatan 3',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-            {
-                title: 'Tingkatan 4',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-        ]
-    },
-    {
-        title: 'Pra Intermediet',
-        tingkatan: [
-            {
-                title: 'Tingkatan 1',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-            {
-                title: 'Tingkatan 2',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-            {
-                title: 'Tingkatan 3',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-            {
-                title: 'Tingkatan 4',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-        ]
-    },
-    {
-        title: 'Pre Advanced',
-        tingkatan: [
-            {
-                title: 'Tingkatan 1',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-            {
-                title: 'Tingkatan 2',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-            {
-                title: 'Tingkatan 3',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-            {
-                title: 'Tingkatan 4',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-        ]
-    },
-    {
-        title: 'Non Advanced',
-        tingkatan: [
-            {
-                title: 'Tingkatan 1',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-            {
-                title: 'Tingkatan 2',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-            {
-                title: 'Tingkatan 3',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-            {
-                title: 'Tingkatan 4',
-                aspek: ['Bantu','Bantu lagi'],
-            },
-        ]
-    },   
-]   
+// const listKurikulum = [
+//     {
+//         title: 'Intermediet',
+//         tingkatan: [
+//             {
+//                 title: 'Tingkatan 1',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//             {
+//                 title: 'Tingkatan 2',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//             {
+//                 title: 'Tingkatan 3',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//             {
+//                 title: 'Tingkatan 4',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//         ]
+//     },
+//     {
+//         title: 'Pra Intermediet',
+//         tingkatan: [
+//             {
+//                 title: 'Tingkatan 1',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//             {
+//                 title: 'Tingkatan 2',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//             {
+//                 title: 'Tingkatan 3',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//             {
+//                 title: 'Tingkatan 4',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//         ]
+//     },
+//     {
+//         title: 'Pre Advanced',
+//         tingkatan: [
+//             {
+//                 title: 'Tingkatan 1',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//             {
+//                 title: 'Tingkatan 2',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//             {
+//                 title: 'Tingkatan 3',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//             {
+//                 title: 'Tingkatan 4',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//         ]
+//     },
+//     {
+//         title: 'Non Advanced',
+//         tingkatan: [
+//             {
+//                 title: 'Tingkatan 1',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//             {
+//                 title: 'Tingkatan 2',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//             {
+//                 title: 'Tingkatan 3',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//             {
+//                 title: 'Tingkatan 4',
+//                 aspek: [{
+//                     id: 'sdjsdjs',
+//                     name: 'bantu',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'notyet',
+//                 },{
+//                     id: 'sahdkjas',
+//                     name: 'bantu lagi',
+//                     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+//                     videoUrl: 'sjahasd',
+//                 }],
+//             },
+//         ]
+//     },   
+// ]   
 
 const MODAL_TYPES = {
     LEVEL: 0,
@@ -110,22 +271,38 @@ export default function Kurikulum() {
 
     const history = useHistory()
     const { data, setData } = useData()
+    const { axios } = useAuth()
 
-    const [levels, setLevels] = React.useState(listKurikulum)
+    const [levels, setLevels] = React.useState([])
     const [levelYangDipilih, setLevelYangDipilih] = React.useState(null)
     const [tingkatanYangDipilih, setTingkatanYangDipilih] = React.useState(null)
     const [aspekYangDipilih, setAspekYangDipilih] = React.useState(null)
     const [isModalShow, setModalShow] = React.useState(false)
     const [modalType, setModalType] = React.useState(MODAL_TYPES.LEVEL)
 
+    React.useEffect(() => {
+        axios({
+            method: 'post',
+            url: '/kurikulum/getData',
+        })
+        .then((response) => {
+            console.log(response.data) //todo remove log
+            setLevels(response.data)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+    }, [])
+
     const handleClickLevel = function(level){
 
         const findLevel = (name) => levels.find(level => level.title === name)
 
-        if (level === 'Intermediet') setLevelYangDipilih(findLevel('Intermediet'))
+        if (level === 'Intermediet') setLevelYangDipilih(findLevel('Intermediate'))
         else if (level === 'Pra Intermediet') setLevelYangDipilih(findLevel('Pra Intermediet'))
         else if (level === 'Pre Advanced') setLevelYangDipilih(findLevel('Pre Advanced'))
         else if (level === 'Non Advanced') setLevelYangDipilih(findLevel('Non Advanced'))
+        else return;
 
         setModalType(MODAL_TYPES.LEVEL)
         setModalShow(true)
@@ -151,9 +328,11 @@ export default function Kurikulum() {
                 <div className="tw-flex tw-items-center tw-justify-center">
                     <div className="tw-grid tw-grid-cols-2 tw-gap-8 tw-max-w-sm tw-w-full">
                         {
+                            levelYangDipilih?.tingkatan.length > 0 ?
                             levelYangDipilih?.tingkatan.map(function(tingkatan, i){
                                 return <div key={i} onClick={() => handleClickTingkatan(tingkatan)} className="tw-px-2 tw-py-3 tw-rounded-xl tw-text-white tw-font-medium tw-shadow-sm" style={{background: 'linear-gradient(135deg, #256e48 75%, #49ae11 100%)'}}>{tingkatan.title}</div>
                             })
+                            : <span>Tidak ada data</span>
                         }
                     </div>
                 </div>
@@ -184,6 +363,7 @@ export default function Kurikulum() {
                 <div className="tw-flex tw-items-center tw-justify-center">
                     <div className="tw-grid tw-grid-cols-2 tw-gap-10 tw-max-w-sm tw-place-items-center">
                         {
+                            tingkatanYangDipilih?.aspek.length > 0 ?
                             tingkatanYangDipilih?.aspek.map(function(aspek, j){ //todo edit bentuk tombol jadi bunder
 
                                 const sudut = Math.floor(Math.random()*360)
@@ -191,10 +371,11 @@ export default function Kurikulum() {
                                 return <div key={j} onClick={() => handlePilihAspek(aspek)} className="tw-relative tw-shadow-sm">
                                     <img src={bunder} className="tw-transform" style={{WebkitTransform: `rotate(${sudut}deg)`, transform: `rotate(${sudut}deg)`}} />
                                     <div className="tw-absolute tw-flex tw-items-center tw-justify-center tw-w-full tw-h-full tw-top-0">
-                                        <span className="tw-text-white tw-font-medium sm:tw-text-lg md:tw-text-2xl">{aspek}</span>
+                                        <span className="tw-text-white tw-font-medium sm:tw-text-lg md:tw-text-2xl">{aspek.name}</span>
                                     </div>
                                 </div>
                             })
+                            : <span>Tidak ada data</span>
                         }
                     </div>
                 </div>
@@ -206,11 +387,11 @@ export default function Kurikulum() {
         <div className="tw-relative tw-w-screen tw-min-h-screen">
             <Header />
             {/* todo ganti jadi 1 bunderan aja */}
-            <img className="tw-absolute tw-bottom-0 tw-right-0 sm:tw-max-w-lg" src={ornament2} style={{WebkitTransform: "scaleX(-1)", trasform: "scaleX(-1)", zIndex: -1}} />
+            <img className="tw-absolute tw-bottom-0 tw-right-0 sm:tw-max-w-lg tw-invisible md:tw-visible" src={ornament2} style={{WebkitTransform: "scaleX(-1)", trasform: "scaleX(-1)", zIndex: -1}} />
             <div className="tw-pt-16 tw-w-screen tw-px-8">
                 <div className="tw-flex tw-flex-col tw-gap-2 tw-bg-white tw-rounded-xl tw-px-2 tw-py-4">
-                    <span className="tw-font-semibold tw-text-5xl tw-text-primary">Fitur Kurikulum</span>
-                    <span className="tw-text-2xl">Pada fitur berikut, anda dapat memilih dan menyimak tutorial pelaksanaan terapi.</span>
+                    <span className="tw-font-semibold tw-text-3xl lg:tw-text-5xl tw-text-primary">Fitur Kurikulum</span>
+                    <span className="text-lg md:tw-text-xl lg:tw-text-2xl">Pada fitur berikut, anda dapat memilih dan menyimak tutorial pelaksanaan terapi.</span>
                 </div>
             </div>
             <div className="tw-flex tw-items-center tw-justify-center tw-w-full tw-mt-8">

@@ -95,4 +95,9 @@ class TerapisController extends Controller
 
         return $terapists;
     }
+
+    public function findNearby(Request $request){
+        
+        return 'ok';
+    }
 }

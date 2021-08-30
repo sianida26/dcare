@@ -11,7 +11,9 @@ const defaultValues = {
             disabilityId: -1,
         },
         tingkatanKurikulum: '',
-        aspekKurikulum: '',
+        aspekKurikulum: {
+            id: -1,
+        },
     },
     setDataState: () => {}
 }

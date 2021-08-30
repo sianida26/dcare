@@ -1,9 +1,15 @@
 module.exports = {
-  purge: [
-    './resources/**/*.blade.php',
-    './resources/**/*.js',
-    './resources/**/*.jsx',
-  ],
+  purge: {
+    content: [
+      './resources/**/*.blade.php',
+      './resources/**/*.js',
+      './resources/**/*.jsx',
+    ],
+    safelist: [
+      'tw-list-decimal',
+      'tw-list-inside',
+    ]
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
