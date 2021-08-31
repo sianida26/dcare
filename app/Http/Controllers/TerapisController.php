@@ -88,6 +88,8 @@ class TerapisController extends Controller
                     'name' => $terapis->user->name,
                     'email' => $terapis->user->email,
                     'phone' => $terapis->phone,
+                    'avatar' => 'http://www.gravatar.com/avatar/?d=mp',
+                    'rating' => 5,
                     'education' => $terapis->education,
                     'year' => $terapis->terapist_since,
                     'speciality' => $terapis->speciality->name,
