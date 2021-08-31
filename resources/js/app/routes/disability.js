@@ -14,6 +14,7 @@ import Aspek from "../pages/disability/kurikulum/Aspek";
 import Splash from '../pages/Splash';
 import TerapisTerdekat from '../pages/disability/terapisTerdekat/TerapisTerdekat'
 import FAQ from "../pages/public/FAQ";
+import Komunitas from "../pages/public/Komunitas";
 
 
 const routes = [
@@ -73,6 +74,10 @@ const routes = [
         path: '/faq',
         component: FAQ,
     },
+    {
+        path: '/komunitas',
+        component: Komunitas,
+    }
 ]
 
 export default routes;

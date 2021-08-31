@@ -63,8 +63,8 @@ export default function DashboardDisability() {
                         ))
                     }
                 </div>
-                <img onClick={() => history.push('/faq')} src={QnAImage} style={{height: '24rem', objectFit: 'contain', alignSelf: 'start'}} />
-                <img onClick={() => history.push('/faq')} src={KonsultasiImage} style={{height: '24rem', objectFit: 'contain', alignSelf: 'start'}} />
+                <img onClick={() => history.push('/faq')} src={QnAImage}/*  style={{height: '24rem', objectFit: 'contain', alignSelf: 'start'}} */ />
+                <img onClick={() => history.push('/komunitas')} src={KomunitasImage} style={{height: '24rem', objectFit: 'contain', alignSelf: 'start'}} />
              </main>
              <img src={EventTerdekatImg} className="tw-absolute tw-bottom-0 tw-h-48 tw-object-contain tw-right-0" />
         </div>
