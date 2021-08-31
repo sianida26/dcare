@@ -9,6 +9,7 @@ use App\Http\Controllers\TerapisController;
 use App\Http\Controllers\InboxController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\KonsultasiController;
+use App\Http\Controllers\KurikulumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,10 @@ Route::middleware('auth:api')->group(function(){
     Route::prefix('/inbox')->group(function(){
         Route::get('getInboxes', [InboxController::class, 'getInboxes']);
     });
+
+    Route::prefix('terapist')->group(function(){
+        Route::post('/findNearby', [TerapisController::class, 'findNearby']);
+    });
     
     Route::prefix('/konsultasi')->group(function(){
         Route::post('/getTerapists', [TerapisController::class, 'getTerapists']);
@@ -45,6 +50,10 @@ Route::middleware('auth:api')->group(function(){
     Route::prefix('/monitoring')->group(function(){
         Route::post('/buatLaporan', [MonitoringController::class,'buatLaporan']);
         Route::post('/getLaporanPerBulan', [MonitoringController::class,'getLaporanPerBulan']);
+    });
+
+    Route::prefix('/kurikulum')->group(function(){
+        Route::post('/getData', [KurikulumController::class, 'getData']);
     });
 });
 

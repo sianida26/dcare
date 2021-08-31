@@ -80,12 +80,16 @@ class TerapisController extends Controller
 
         $terapists = Terapis::with('user')
             ->get()
+            ->sortByDesc('id')
+            ->values()
             ->map(function($terapis){
                 return [
                     'id' => $terapis->id,
                     'name' => $terapis->user->name,
                     'email' => $terapis->user->email,
                     'phone' => $terapis->phone,
+                    'avatar' => 'http://www.gravatar.com/avatar/?d=mp',
+                    'rating' => 5,
                     'education' => $terapis->education,
                     'year' => $terapis->terapist_since,
                     'speciality' => $terapis->speciality->name,
@@ -94,5 +98,19 @@ class TerapisController extends Controller
 
 
         return $terapists;
+    }
+
+    public function findNearby(Request $request){
+        
+        return Terapis::all()
+        ->map(function($terapis){
+
+            return [
+                'name' => $terapis->user->name,
+                'speciality' => $terapis->speciality->name,
+                'location' => [floatval($terapis->latitude), floatval($terapis->longitude)],
+            ];
+        })
+        ->all();
     }
 }

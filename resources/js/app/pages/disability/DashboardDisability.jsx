@@ -5,6 +5,7 @@ import { useAuth } from '../../providers/AuthProvider'
 
 import HeaderLanding from '../../components/HeaderLanding'
 import QnAImage from '../../assets/images/qna.png'
+import KomunitasImage from '../../assets/images/komunitas.png'
 import EventTerdekatImg from '../../assets/images/event_terdekat.png'
 
 const DASHBOARD_MENUS = [
@@ -26,6 +27,7 @@ const DASHBOARD_MENUS = [
     {
         icon: 'search', //todo ganti
         caption: 'Temukan Terapis Terdekat',
+        link: '/terapis-terdekat'
     },
     {
         icon: 'card-text',
@@ -61,7 +63,8 @@ export default function DashboardDisability() {
                         ))
                     }
                 </div>
-                <img src={QnAImage} style={{height: '24rem', objectFit: 'contain', alignSelf: 'start'}} />
+                <img onClick={() => history.push('/faq')} src={QnAImage}/*  style={{height: '24rem', objectFit: 'contain', alignSelf: 'start'}} */ />
+                <img onClick={() => history.push('/komunitas')} src={KomunitasImage} style={{height: '24rem', objectFit: 'contain', alignSelf: 'start'}} />
              </main>
              <img src={EventTerdekatImg} className="tw-absolute tw-bottom-0 tw-h-48 tw-object-contain tw-right-0" />
         </div>

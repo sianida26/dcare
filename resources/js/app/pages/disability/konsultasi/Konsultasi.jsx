@@ -36,11 +36,11 @@ export default function Konsultasi() {
             let data = result.data;
             setTerapists(data.map((terapist) => ({
                 id: terapist.id,
-                avatar: faker.image.avatar(),
+                avatar: terapist.avatar,
                 name: terapist.name,
                 email: terapist.email,
                 phone: terapist.phone,
-                rating: Math.floor(Math.random()*6),
+                rating: terapist.rating,
                 job: terapist.education,
                 year: terapist.year,
                 speciality: terapist.speciality,
