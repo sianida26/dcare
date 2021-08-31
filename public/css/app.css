@@ -1,1 +1,42 @@
-input:focus,select:focus{outline:none}.react-calendar__navigation{margin-bottom:1rem}.react-calendar__month-view__weekdays{border-bottom-width:2px;border-color:#1c6e48;margin-bottom:1rem}.spinner{-webkit-animation:spin 2s linear infinite;animation:spin 2s linear infinite;border:16px solid #f3f3f3;border-radius:50%;border-top-color:#3498db;height:120px;left:50%;margin:-76px 0 0 -76px;position:absolute;top:50%;width:120px;z-index:1}.player-wrapper{height:auto;width:auto}.react-player{padding-top:56.25%;position:relative}.react-player>div{position:absolute}
+input:focus, select:focus {
+    outline: none;
+}
+
+.react-calendar__navigation{
+    margin-bottom: 1rem;
+}
+
+.react-calendar__month-view__weekdays{
+    margin-bottom: 1rem;
+    border-bottom-width: 2px;
+    border-color: #1c6e48;
+}
+
+.spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+
+.player-wrapper {
+    width: auto; 
+    height: auto;
+  }
+
+.react-player {
+    padding-top: 56.25%;
+    position: relative;
+  }
+  
+.react-player > div {
+    position: absolute;
+  }

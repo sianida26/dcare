@@ -3209,6 +3209,160 @@ function RegisterTerapist() {
 
 /***/ }),
 
+/***/ "./resources/js/app/pages/public/WhatsNew.jsx":
+/*!****************************************************!*\
+  !*** ./resources/js/app/pages/public/WhatsNew.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ WhatsNew)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _components_HeaderLanding__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/HeaderLanding */ "./resources/js/app/components/HeaderLanding.jsx");
+/* harmony import */ var _assets_images_na_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../assets/images/na.jpg */ "./resources/js/app/assets/images/na.jpg");
+/* harmony import */ var _assets_images_artikel1_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../assets/images/artikel1.jpg */ "./resources/js/app/assets/images/artikel1.jpg");
+/* harmony import */ var _assets_images_artikel2_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../assets/images/artikel2.jpg */ "./resources/js/app/assets/images/artikel2.jpg");
+/* harmony import */ var _assets_images_artikel3_jpeg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../assets/images/artikel3.jpeg */ "./resources/js/app/assets/images/artikel3.jpeg");
+/* harmony import */ var _assets_images_artikel4_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../assets/images/artikel4.jpg */ "./resources/js/app/assets/images/artikel4.jpg");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+function WhatsNew() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    className: "tw-w-screen tw-h-screen",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_HeaderLanding__WEBPACK_IMPORTED_MODULE_1__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+      className: "tw-relative tw-pt-16 tw-flex tw-flex-col",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        className: "tw-relative",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+          src: _assets_images_artikel1_jpg__WEBPACK_IMPORTED_MODULE_3__.default,
+          className: "tw-filter tw-brightness-75 tw-object-cover tw-w-full tw-h-96"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+          className: "tw-absolute tw-top-0 tw-left-6 lg:tw-left-8 tw-p-4 tw-pt-8 tw-w-40 lg:tw-w-52 tw-bg-gray-200 tw-bg-opacity-50 tw-items-center",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+            className: "tw-font-bold tw-text-3xl lg:tw-text-5xl tw-text-white",
+            children: "APA YANG BARU ?"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          className: "tw-absolute tw-bottom-2 lg:tw-bottom-3 tw-right-6 lg:tw-right-8 tw-flex tw-flex-col",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+            className: "tw-font-semibold tw-text-white lg:tw-text-lg tw-text-right tw-leading-snug",
+            children: "Menghapus Diskriminasi terhadap Penyandang Disabilitas"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+            className: "tw-font-semibold tw-text-white lg:tw-text-lg tw-text-right",
+            children: "Oleh : Fathimah Soraya"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+            className: "tw-font-semibold tw-text-white lg:tw-text-lg tw-text-right",
+            children: "29 Agustus 2021"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+            className: "tw-bg-gray-200 tw-bg-opacity-50 tw-py-1 tw-px-3 tw-mt-1 tw-rounded-lg tw-self-end tw-font-medium tw-text-md tw-text-white tw-text-center",
+            children: "Buka"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+        className: "tw-px-4 tw-py-10 tw-w-3/4 tw-self-center tw-flex tw-flex-col tw-items-center tw-justify-center",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          className: "tw-flex tw-flex-col tw-gap-4 tw-w-full tw-bg-gray-300 tw-rounded-lg tw-p-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "tw-flex tw-gap-3 tw-w-full tw-items-center tw-justify-center",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
+              className: "bi bi-arrow-left tw-text-primary tw-text-xl lg:tw-text-2xl"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "tw-border tw-border-gray-500 tw-w-full tw-p-2 tw-flex tw-flex-col tw-gap-1",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+                src: _assets_images_artikel2_jpg__WEBPACK_IMPORTED_MODULE_4__.default,
+                className: "tw-object-cover tw-w-full tw-h-32 lg:tw-h-52"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                className: "tw-font-semibold tw-text-xl tw-text-primary",
+                children: "Latest News"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                className: "tw-font-medium tw-mt-3",
+                children: "30 Agustus 2021"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                children: "Mahasiswa UM ciptakan olahan makanan cepat saji penunjang perkembangan otak disabilitas intelektual"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                className: "tw-bg-primary tw-py-2 tw-px-3 tw-mt-10 tw-w-full lg:tw-w-56 tw-rounded-lg tw-items-center tw-justify-center",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+                  className: "tw-font-medium tw-text-md tw-text-white tw-text-center",
+                  children: "View All News & Articles"
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
+              className: "bi bi-arrow-right tw-text-primary tw-text-xl lg:tw-text-2xl"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "tw-flex tw-gap-3 tw-w-full tw-items-center tw-justify-center",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
+              className: "bi bi-arrow-left tw-text-primary tw-text-xl lg:tw-text-2xl"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "tw-border tw-border-gray-500 tw-w-full tw-p-2 tw-flex tw-flex-col tw-gap-1",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+                src: _assets_images_artikel3_jpeg__WEBPACK_IMPORTED_MODULE_5__.default,
+                className: "tw-filter tw-brightness-75 tw-object-cover tw-w-full tw-h-32 lg:tw-h-52"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                className: "tw-font-semibold tw-text-xl tw-text-primary",
+                children: "Tips & Trick"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                className: "tw-font-medium tw-mt-3",
+                children: "25 Agustus 2021"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                children: "Orang tua kesulitan menghadapi anak tantrum, ini solusinya!"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                className: "tw-bg-primary tw-py-2 tw-px-3 tw-mt-10 tw-w-full lg:tw-w-56 tw-rounded-lg tw-items-center tw-justify-center",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+                  className: "tw-font-medium tw-text-md tw-text-white tw-text-center",
+                  children: "View All Tips & Trick"
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
+              className: "bi bi-arrow-right tw-text-primary tw-text-xl lg:tw-text-2xl"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "tw-flex tw-gap-3 tw-w-full tw-items-center tw-justify-center",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
+              className: "bi bi-arrow-left tw-text-primary tw-text-xl lg:tw-text-2xl"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "tw-border tw-border-gray-500 tw-w-full tw-p-2 tw-flex tw-flex-col tw-gap-1",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+                src: _assets_images_artikel4_jpg__WEBPACK_IMPORTED_MODULE_6__.default,
+                className: "tw-object-cover tw-w-full tw-h-32 lg:tw-h-52"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                className: "tw-font-semibold tw-text-xl tw-text-primary",
+                children: "Event"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                className: "tw-font-medium tw-mt-3",
+                children: "23 Agustus 2021"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                children: "Webinar Perayaan Hari Disabilitas Internasional Tahun 2020"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                className: "tw-bg-primary tw-py-2 tw-px-3 tw-mt-10 tw-w-full lg:tw-w-56 tw-rounded-lg tw-items-center tw-justify-center",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+                  className: "tw-font-medium tw-text-md tw-text-white tw-text-center",
+                  children: "View All Event"
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
+              className: "bi bi-arrow-right tw-text-primary tw-text-xl lg:tw-text-2xl"
+            })]
+          })]
+        })
+      })]
+    })]
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/app/providers/AuthProvider.jsx":
 /*!*****************************************************!*\
   !*** ./resources/js/app/providers/AuthProvider.jsx ***!
@@ -3411,6 +3565,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_public_LandingPage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pages/public/LandingPage */ "./resources/js/app/pages/public/LandingPage.jsx");
 /* harmony import */ var _pages_public_Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/public/Login */ "./resources/js/app/pages/public/Login.jsx");
 /* harmony import */ var _pages_public_RegisterTerapist__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/public/RegisterTerapist */ "./resources/js/app/pages/public/RegisterTerapist.jsx");
+/* harmony import */ var _pages_public_WhatsNew__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/public/WhatsNew */ "./resources/js/app/pages/public/WhatsNew.jsx");
+
 
 
 
@@ -3423,6 +3579,9 @@ var routes = [{
 }, {
   path: '/terapis/register',
   component: _pages_public_RegisterTerapist__WEBPACK_IMPORTED_MODULE_2__.default
+}, {
+  path: '/apayangbaru',
+  component: _pages_public_WhatsNew__WEBPACK_IMPORTED_MODULE_3__.default
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
 
@@ -9364,6 +9523,66 @@ module.exports = warning;
 
 /***/ }),
 
+/***/ "./resources/js/app/assets/images/artikel1.jpg":
+/*!*****************************************************!*\
+  !*** ./resources/js/app/assets/images/artikel1.jpg ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/artikel1.jpg?0bc0e30a948171ce5c9fd64502d8d631");
+
+/***/ }),
+
+/***/ "./resources/js/app/assets/images/artikel2.jpg":
+/*!*****************************************************!*\
+  !*** ./resources/js/app/assets/images/artikel2.jpg ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/artikel2.jpg?8b2eee053549ebc88698241ce7b61fd6");
+
+/***/ }),
+
+/***/ "./resources/js/app/assets/images/artikel3.jpeg":
+/*!******************************************************!*\
+  !*** ./resources/js/app/assets/images/artikel3.jpeg ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/artikel3.jpeg?4c5794371ae6ac5d98cfa4e725888122");
+
+/***/ }),
+
+/***/ "./resources/js/app/assets/images/artikel4.jpg":
+/*!*****************************************************!*\
+  !*** ./resources/js/app/assets/images/artikel4.jpg ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/artikel4.jpg?163ead26f61e14620e523e1dee4f7680");
+
+/***/ }),
+
 /***/ "./resources/js/app/assets/images/event.jpeg":
 /*!***************************************************!*\
   !*** ./resources/js/app/assets/images/event.jpeg ***!
@@ -9406,6 +9625,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/event2.jpeg?7cf09fcf282dc3b8633f5c499641831e");
+
+/***/ }),
+
+/***/ "./resources/js/app/assets/images/na.jpg":
+/*!***********************************************!*\
+  !*** ./resources/js/app/assets/images/na.jpg ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/na.jpg?81fe6e727fc3e7ce630c61d6a0083749");
 
 /***/ }),
 
