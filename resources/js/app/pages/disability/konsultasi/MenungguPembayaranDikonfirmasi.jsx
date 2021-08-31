@@ -1,6 +1,11 @@
 import React from 'react'
 
+import { useHistory } from 'react-router-dom'
+
 export default function MenungguPembayaranDikonfirmasi() {
+
+    const history = useHistory()
+
     return (
         <div>
             <div className="tw-bg-white tw-w-screen tw-h-screen tw-p-4 md:tw-p-14 tw-grid tw-place-items-center">
@@ -14,6 +19,13 @@ export default function MenungguPembayaranDikonfirmasi() {
                     </div>
                     <i className="bi-cash-coin tw-text-primary tw-text-5xl md:tw-text-6xl"></i>
                 </div>
+                <button 
+                    className="tw-text-white tw-font-medium tw-text-xl lg:tw-text-2xl tw-py-1 tw-px-6 tw-rounded-full" 
+                    style={{background: 'linear-gradient(90deg, #256e48 0%, #49ae11 100%)'}}
+                    onClick={() => history.replace('/')}
+                >
+                    Home
+                </button>
             </div>
         </div>
         </div>
