@@ -6,7 +6,7 @@ import { useAuth } from '../../providers/AuthProvider'
 import HeaderLanding from '../../components/HeaderLanding'
 import QnAImage from '../../assets/images/qna.png'
 import KomunitasImage from '../../assets/images/komunitas.png'
-import EventTerdekatImg from '../../assets/images/event_terdekat.png'
+import EventTerdekatImg from '../../assets/images/whatsnew.png'
 
 const DASHBOARD_MENUS = [
     {
@@ -63,10 +63,12 @@ export default function DashboardDisability() {
                         ))
                     }
                 </div>
-                <img onClick={() => history.push('/faq')} src={QnAImage}/*  style={{height: '24rem', objectFit: 'contain', alignSelf: 'start'}} */ />
-                <img onClick={() => history.push('/komunitas')} src={KomunitasImage} style={{height: '24rem', objectFit: 'contain', alignSelf: 'start'}} />
+                <div className="tw-relative">
+                    <img className="tw-absolute tw-top-0" onClick={() => history.push('/faq')} src={QnAImage} />
+                    <img className="tw-absolute tw-top-28" onClick={() => history.push('/komunitas')} src={KomunitasImage} />
+                    <img className="tw-absolute tw-top-52" onClick={() => history.push('/apayangbaru')} src={EventTerdekatImg} />
+                </div>
              </main>
-             <img src={EventTerdekatImg} className="tw-absolute tw-bottom-0 tw-h-48 tw-object-contain tw-right-0" />
         </div>
     )
 }

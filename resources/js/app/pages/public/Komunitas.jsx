@@ -3,6 +3,12 @@ import React from 'react'
 import HeaderLanding from '../../components/HeaderLanding'
 import dropdownIcon from '../../assets/icons/iconForFaq.png'
 
+import gambar1 from '../../assets/images/artikel1.jpg'
+import gambar2 from '../../assets/images/artikel2.jpg'
+import gambar3 from '../../assets/images/artikel4.jpg'
+
+import logoOmahGembira from '../../assets/logo/omahgembira/omahgembira.jpg'
+
 const FAQ_ITEMS = [
     'Apa itu disabilitas?',
     'Apa saja ragam disabilitas?',
@@ -40,7 +46,7 @@ export default function Komunitas() {
                 <div className="tw-w-full tw-bg-gray-200 tw-rounded-2xl tw-flex tw-flex-col tw-mt-16 tw-py-8 tw-px-4">
                     {/* title and logo */}
                     <div className="tw-flex tw-flex-col tw-items-center">
-                        <div className="tw-h-24 tw-w-24 tw-bg-primary tw-rounded-full"></div>
+                        <img className="tw-h-24 tw-w-24 tw-rounded-full" src={logoOmahGembira} alt="Logo Komunitas Omah Gembira" />
                         <h1 className="tw-font-semibold tw-text-xl">Omah Gembira</h1>
                         <span className="">Komunitas</span>
                     </div>
@@ -50,18 +56,14 @@ export default function Komunitas() {
 
                     {/* kegiatan */}
                     <p>Kegiatan:</p>
-                    <div className="tw-grid tw-grid-cols-3 tw-gap-2">
-                        <div className="tw-w-full tw-h-24 tw-bg-white tw-grid tw-place-items-center">
-                            <span>Foto</span>
-                        </div><div className="tw-w-full tw-h-24 tw-bg-white tw-grid tw-place-items-center">
-                            <span>Foto</span>
-                        </div><div className="tw-w-full tw-h-24 tw-bg-white tw-grid tw-place-items-center">
-                            <span>Foto</span>
-                        </div>
+                    <div className="tw-grid tw-grid-cols-3 tw-gap-2 tw-place-items-center">
+                        <img className="tw-w-full" src={gambar1} />
+                        <img className="tw-w-full" src={gambar2} />
+                        <img className="tw-w-full" src={gambar3} />
                     </div>
 
                     {/* contact us */}
-                    <div className="tw-flex tw-justify-end">
+                    <div className="tw-flex tw-justify-end tw-mt-4">
                         <span className="tw-flex tw-flex-col tw-items-end">
                             <span>Kontak Kami</span>
                             <span>OmahGembira@gmail.com</span>

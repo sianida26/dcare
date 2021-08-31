@@ -15,6 +15,7 @@ import Splash from '../pages/Splash';
 import TerapisTerdekat from '../pages/disability/terapisTerdekat/TerapisTerdekat'
 import FAQ from "../pages/public/FAQ";
 import Komunitas from "../pages/public/Komunitas";
+import WhatsNew from "../pages/public/WhatsNew";
 
 
 const routes = [
@@ -77,7 +78,11 @@ const routes = [
     {
         path: '/komunitas',
         component: Komunitas,
-    }
+    },
+    {
+        path: '/apayangbaru',
+        component: WhatsNew,
+    },
 ]
 
 export default routes;
