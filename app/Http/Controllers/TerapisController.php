@@ -81,6 +81,7 @@ class TerapisController extends Controller
         $terapists = Terapis::with('user')
             ->get()
             ->sortByDesc('id')
+            ->values()
             ->map(function($terapis){
                 return [
                     'id' => $terapis->id,
