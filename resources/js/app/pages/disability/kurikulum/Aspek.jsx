@@ -38,6 +38,7 @@ export default function Aspek() {
                     <video controls playsInline className="tw-w-full tw-max-w-screen-md tw-min-w-screen-sm" >
                         <source src={`${dataAspek?.videoUrl}`} type="video/mp4" />
                     </video>
+                    <p className="tw-text-center lg:tw-text-right tw-text-sm tw-text-gray-500 tw-font-medium">Source: Yayasan Bakthi Luhur</p>
                 </div>
                 <div className="tw-flex tw-flex-col tw-gap-4 tw-p-4 tw-bg-gray-100 tw-rounded-lg">
                     <span className="tw-font-semibold tw-text-primary tw-text-xl sm:tw-text-2xl md:tw-text-3xl">Catatan</span>
