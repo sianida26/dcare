@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Disability Care</title>
-    <link rel="stylesheet" href="/css/tailwind.css">
-    <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="/css/bootstrap-icons.css">
-    <link rel="stylesheet" href="/css/fonts/poppins.css">
+    <link rel="stylesheet" href="{{mix('/css/tailwind.css')}}">
+    <link rel="stylesheet" href="{{mix('/css/app.css')}}">
+    <link rel="stylesheet" href="{{mix('/css/bootstrap-icons.css')}}">
+    <link rel="stylesheet" href="{{mix('/css/fonts/poppins.css')}}">
 
     <link
         rel="stylesheet"
@@ -21,6 +21,6 @@
 </head>
 <body>
     <div id="root"></div>
-    <script src="/js/index.js"></script>
+    <script src="{{mix('/js/index.js')}}"></script>
 </body>
 </html>
