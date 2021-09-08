@@ -8,6 +8,15 @@ import { useAuth } from '../../../providers/AuthProvider'
 import { useData } from '../../../providers/DisabilityDataProvider'
 import { useHistory } from 'react-router'
 
+import {
+    InputAdornment,
+    TextField,
+} from '@material-ui/core'
+
+import {
+    Search as SearchIcon
+} from '@material-ui/icons'
+
 import HeaderLanding from '../../../components/HeaderLanding'
 import TerapistCard from '../../../components/TerapistCard'
 import ornament2 from '../../../assets/ornaments/2.png'
@@ -19,10 +28,20 @@ export default function Konsultasi() {
     // const { enqueueSnackbar } = useSnackbar()
     const {axios} = useAuth()
     const [terapists, setTerapists] = React.useState([])
+    const [search, setSearch] = React.useState('')
+    const [filteredTerapists, setFilteredTerapists] = React.useState([])
     
     React.useEffect(() => {
         requestTerapists()
     }, [])
+
+    React.useEffect(() => {
+        setFilteredTerapists(search.length === 0 ? terapists : terapists.filter(terapist => {
+            return terapist.name.indexOf(search) !== -1 
+                || terapist.email.indexOf(search) !== -1 
+                || terapist.speciality.indexOf(search) !== -1 
+        })) 
+    }, [terapists, search])
 
     const requestTerapists = () => {
 
@@ -87,6 +106,10 @@ export default function Konsultasi() {
         history.push('/konsultasi/pilih-tanggal')
     }
 
+    const handleSearchChange = (str) => {
+        setSearch(str)
+    }
+
     return (
         <div className="tw-relative tw-flex tw-flex-col tw-w-full tw-min-h-screen">
             <HeaderLanding />
@@ -100,9 +123,24 @@ export default function Konsultasi() {
                     <span className="tw-w-72 tw-font-light tw-text-center">Temui terapis favoritmu dan agendakan konsultasi dengannya</span>
                 </div>
 
+                <div>
+                    <TextField 
+                        fullWidth
+                        placeholder="Cari"
+                        type="search"
+                        autoComplete="off"
+                        onChange={(e) => handleSearchChange(e.target.value)}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <SearchIcon />
+                            </InputAdornment>
+                        }}
+                    />
+                </div>
+
                 <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 xl:tw-grid-cols-3 tw-w-full tw-place-items-center tw-gap-12 tw-mt-8 tw-text-sm lg:tw-px-12">
                     {
-                        terapists.map(terapist => <TerapistCard
+                        filteredTerapists.map(terapist => <TerapistCard
                             onClick={() => handlePilihTerapis(terapist.id)} 
                             key={terapist.id} 
                             avatar={terapist.avatar} 

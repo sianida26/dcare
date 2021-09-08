@@ -26,7 +26,7 @@ export default function TerapistCard({avatar, name, email, phone, rating, job, y
                 <div className="tw-flex tw-flex-col tw-items-center">
                     <span>{name}</span>
                     <span>{email}</span>
-                    <span>{phone}</span>
+                    {/* <span>{phone}</span> */}
                 </div>
 
                 {/* rating */}

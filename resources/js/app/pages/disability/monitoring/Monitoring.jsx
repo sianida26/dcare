@@ -183,7 +183,13 @@ export default function Monitoring() {
                         customInput={<DatePickerCustom />}
                     /> 
                 </div>
-                <table className="tw-w-full tw-table-fixed">
+                <table className="tw-w-full">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
                     <tbody className="tw-w-full">
                         {/* <tr className="tw-flex tw-gap-2">
                             <td className="tw-py-3">01/08/2021</td>
