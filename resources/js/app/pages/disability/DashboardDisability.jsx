@@ -44,13 +44,13 @@ export default function DashboardDisability() {
 
     const history = useHistory()
 
-    const { axios } = useAuth()
+    const { axios, auth } = useAuth()
 
     return (
         <div className="tw-w-full tw-flex tw-flex-col tw-relative">
              <HeaderLanding />
              <main className="tw-pt-12 tw-px-4 md:tw-px-8 lg:tw-px-16 tw-flex tw-flex-col">
-                <h1 className="tw-text-2xl md:tw-text-3xl tw-text-center md:tw-text-left tw-font-bold tw-text-primary tw-mt-12">Beranda Penyandang Disabilitas</h1>
+                <h1 className="tw-text-2xl md:tw-text-3xl tw-text-center md:tw-text-left tw-font-bold tw-text-primary tw-mt-12">Hai, {auth.name}</h1>
                 <div className="tw-w-full tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-4 tw-gap-5 tw-mt-8 tw-self-stretch tw-place-items-center">
                     {
                         DASHBOARD_MENUS.map((x) => (
@@ -72,3 +72,4 @@ export default function DashboardDisability() {
         </div>
     )
 }
+
