@@ -27,7 +27,7 @@ export default function WhatsNew() {
                     </div>
                 </div>
                 {/* content */}
-                <div className="tw-px-4 tw-py-10 tw-w-3/4 tw-self-center tw-flex tw-flex-col tw-items-center tw-justify-center">
+                <div className="tw-px-4 tw-py-10 lg:tw-w-3/4 tw-self-center tw-flex tw-flex-col tw-items-center tw-justify-center">
                     {/* card */}
                     <div className="tw-flex tw-flex-col tw-gap-4 tw-w-full tw-bg-gray-300 tw-rounded-lg tw-p-4">
                         <div className="tw-flex tw-gap-3 tw-w-full tw-items-center tw-justify-center">
